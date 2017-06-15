@@ -41,16 +41,16 @@ void TAddress::load(ifstream& inFile)
                 switch(i)
                 {
                     case 0:
-                        Street = parseLine(line, tagToLookFor[i]);
+                        Street = getXmlNodeContent(line);
                         break;
                     case 1:
-                        Number = parseLine(line, tagToLookFor[i]);
+                        Number = getXmlNodeContent(line);
                         break;
                     case 2:
-                        Zipcode = parseLine(line, tagToLookFor[i]);
+                        Zipcode = getXmlNodeContent(line);
                         break;
                     case 3:
-                        Town = parseLine(line, tagToLookFor[i]);
+                        Town = getXmlNodeContent(line);
                         break;
                     default:
                         cout << "Nothing found... in Address" << endl;
@@ -59,16 +59,6 @@ void TAddress::load(ifstream& inFile)
             }
         }
     }
-}
-
-
-string TAddress::parseLine(string line, string tagToBeStriped)
-{
-    string tagEndBegin = "</";
-    size_t tagStartPos = line.find(tagToBeStriped);
-    int messageLength = line.length() - ((tagStartPos + 1) + (tagToBeStriped.length() * 2) + 1);
-    int messageStart = tagStartPos+tagToBeStriped.length(); 
-    return line.substr(messageStart, messageLength);
 }
 
 

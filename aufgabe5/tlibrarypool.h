@@ -3,6 +3,8 @@
 
 #include <fstream>
 #include <vector>
+
+#include "xml.h"
 #include "tdate.h"
 #include "tlocation.h"
 #include "taddress.h"
@@ -12,9 +14,6 @@
 
 class TLibraryPool
 {
-    protected:
-        string parseLine(string, string);
-
     private:
         string Name;
         string Filename;

@@ -10,6 +10,8 @@
 #ifndef TEMPLOYEE_H
 #define TEMPLOYEE_H
 
+#include "xml.h"
+
 #include "taddress.h"
 #include "tdate.h"
 #include "tperson.h"
@@ -27,7 +29,6 @@ class TEmployee: TPerson
 
         // load from file stream
         void load(ifstream&);
-        string parseLine(string, string);
 
         // getter and setter
         string getEmployeeNr();

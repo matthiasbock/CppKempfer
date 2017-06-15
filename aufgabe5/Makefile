@@ -11,7 +11,7 @@ RM = rm
 #  -g    adds debugging information to the executable file
 #  -Wall turns on most, but not all, compiler warnings
 #
-CPFLAGS += -g -Wall
+CPPFLAGS += -g -Wall
 LDFLAGS += -lstdc++
 
 #

@@ -1,13 +1,5 @@
 // class TMedium
-#include <fstream>
-#include <iostream>
-#include <string>
-#include <iomanip>
-#include <cstdlib>
 
-using namespace std;
-
-#include "tlocation.h"
 #include "tmedium.h"
 
 TMedium::TMedium(string Name, string Signature, TLocation* Location, int FSK, Status status)
@@ -46,36 +38,27 @@ void TMedium::load(ifstream& inFile)
                 switch(i)
                 {
                     case 0:
-                        Name = parseLine(line, tagToLookFor[i]);
+                        Name = getXmlNodeContent(line);
                         break;
                     case 1:
-                        Signature = parseLine(line, tagToLookFor[i]);
+                        Signature = getXmlNodeContent(line);
                         break;
                     case 2:
                         Location = new TLocation(inFile);
                         break;
                     case 3:
-                        FSK = atoi(parseLine(line, tagToLookFor[i]).c_str());
+                        FSK = atoi(getXmlNodeContent(line).c_str());
                         break;
                     case 4:
-                        set_status(atoi(parseLine(line, tagToLookFor[i]).c_str()));
+                        set_status(atoi(getXmlNodeContent(line).c_str()));
                         break;      
                     default:
-                        cout << "Nothing found... in Medium" << endl;
+                        cout << "Unrecognized child node type for TMedium: " << getXmlNodeType(line) << endl;
                         break;
                 }
             }
         }
     }
-}
-
-string TMedium::parseLine(string line, string tagToBeStriped)
-{
-    string tagEndBegin = "</";
-    size_t tagStartPos = line.find(tagToBeStriped);
-    int messageLength = line.length() - ((tagStartPos + 1) + (tagToBeStriped.length() * 2) + 1);
-    int messageStart = tagStartPos+tagToBeStriped.length(); 
-    return line.substr(messageStart, messageLength);
 }
 
 void TMedium::set_status(int statusInt)

@@ -29,7 +29,7 @@ void TCustomer::load(ifstream& inFile)
                 {
                      // find Pool name > save directly
                     case 0:
-                        Name = parseLine(line, tagToLookFor[i]);
+                        Name = getXmlNodeContent(line);
                         break;
                     // find Birthday > create Birthday and let it load
                     case 1:
@@ -40,7 +40,7 @@ void TCustomer::load(ifstream& inFile)
                         Address = new TAddress(inFile);
                         break;
                     case 3:
-                        CustomerNr = parseLine(line, tagToLookFor[i]);
+                        CustomerNr = getXmlNodeContent(line);
                         break;
                     default:
                         cout << "Nothing found... in Person" << endl;

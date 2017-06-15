@@ -38,7 +38,7 @@ void TPerson::load(ifstream& inFile)
                 {
                      // find Pool name > save directly
                     case 0:
-                        Name = parseLine(line, tagToLookFor[i]);
+                        Name = getXmlNodeContent(line);
                         break;
                     // find Birthday > create Birthday and let it load
                     case 1:
@@ -60,15 +60,6 @@ void TPerson::load(ifstream& inFile)
 TPerson::~TPerson()
 {
     cout << "Die Person " << Name << " wird vernichtet!" << endl;
-}
-
-string TPerson::parseLine(string line, string tagToBeStriped)
-{
-    string tagEndBegin = "</";
-    size_t tagStartPos = line.find(tagToBeStriped);
-    int messageLength = line.length() - ((tagStartPos + 1) + (tagToBeStriped.length() * 2) + 1);
-    int messageStart = tagStartPos+tagToBeStriped.length(); 
-    return line.substr(messageStart, messageLength);
 }
 
 string TPerson::get_name() const {return Name;}

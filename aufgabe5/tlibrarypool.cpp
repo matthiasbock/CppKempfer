@@ -54,7 +54,7 @@ TLibraryPool::TLibraryPool(string filename)
                         {
                              // find Pool name > save directly
                             case 0:
-                                Name = parseLine(line, tagToLookFor[i]);
+                                Name = getXmlNodeContent(line);
                                 break;
                             // find Chairman > create TPerson and let it load
                             case 1:
@@ -101,24 +101,18 @@ TLibraryPool::~TLibraryPool()
     delete Boss;
 }
 
+
 void TLibraryPool::add(TPerson* customer)
 {
     CustomerList.push_back(customer);
 }
+
 
 void TLibraryPool::add(TLibrary* lib)
 {
     LibraryList.push_back(lib);
 }
 
-string TLibraryPool::parseLine(string line, string tagToBeStriped)
-{
-    string tagEndBegin = "</";
-    size_t tagStartPos = line.find(tagToBeStriped);   
-    int messageLength = line.length() - ((tagStartPos + 1) + (tagToBeStriped.length() * 2) + 1);
-    int messageStart = tagStartPos+tagToBeStriped.length();  
-    return line.substr(messageStart, messageLength);
-}
 
 void TLibraryPool::print()
 {
@@ -143,6 +137,7 @@ void TLibraryPool::print()
     }
     cout << endl;
 }
+
 
 void TLibraryPool::set_name(string n) {Name = n;}
 void TLibraryPool::set_boss(TPerson* b) {Boss = b;}

@@ -56,7 +56,7 @@ void TEmployee::load(ifstream& inFile)
                 {
                      // find Pool name > save directly
                     case 0:
-                        Name = parseLine(line, tagToLookFor[i]);
+                        Name = getXmlNodeContent(line);
                         break;
                     // find Birthday > create Birthday and let it load
                     case 1:
@@ -67,7 +67,7 @@ void TEmployee::load(ifstream& inFile)
                         Address = new TAddress(inFile);
                         break;
                     default:
-                        cout << "Nothing found... in Person" << endl;
+                        cout << "Unsupported child node type for TEmployee: " << getXmlNodeType(line) << endl;
                         break;
                 }
             }
@@ -80,14 +80,6 @@ TEmployee::~TEmployee()
     cout << "Employee \"" << Name << "\" destroyed." << endl;
 }
 
-string TEmployee::parseLine(string line, string tagToBeStriped)
-{
-    string tagEndBegin = "</";
-    size_t tagStartPos = line.find(tagToBeStriped);
-    int messageLength = line.length() - ((tagStartPos + 1) + (tagToBeStriped.length() * 2) + 1);
-    int messageStart = tagStartPos+tagToBeStriped.length(); 
-    return line.substr(messageStart, messageLength);
-}
 
 /*
  * getter and setter

@@ -1,11 +1,19 @@
 #ifndef TMEDIUM_H
 #define TMEDIUM_H
 
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <iomanip>
+#include <cstdlib>
+
+#include "xml.h"
+#include "tlocation.h"
+
+using namespace std;
+
 class TMedium
 {
-    protected:
-        string parseLine(string, string);
-        
     public:
         enum Status {verfuegbar, ausgeliehen, bestellt, reserviert};
 

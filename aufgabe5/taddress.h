@@ -1,11 +1,10 @@
 #ifndef TADDRESS_H
 #define TADDRESS_H
 
+#include "xml.h"
+
 class TAddress
 {
-    protected:
-        string parseLine(string, string);
-        
     private:
         string Street;
         string Number;
