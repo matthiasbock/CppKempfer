@@ -1,19 +1,59 @@
-# the compiler: gcc for C program, define as g++ for C++
-CC = g++
+#
+# The compiler: gcc for C program, g++ for C++
+#
+CC = gcc
+CPP := g++
+RM = rm
 
-# compiler flags:
+#
+# Compiler flags
+#
 #  -g    adds debugging information to the executable file
 #  -Wall turns on most, but not all, compiler warnings
-CFLAGS  = -g -Wall
+#
+CPPFLAGS += -g -Wall
 
-# the build target executable:
-TARGET = ueb05
-HEADERS = tdate.h ttime.h tlocation.h taddress.h tperson.h tmedium.h tlibrary.h tlibraryPool.h tcustomer.h
+#
+# Source files
+#
+SOURCES = $(wildcard *.cpp)
+OBJECTS = $(SOURCES:.cpp=.o)
+HEADERS = $(wildcard *.h)
+TARGET := ueb05
+
+#
+# Detect operating system
+#
+ifeq ($(OS),Windows_NT)
+    CPPFLAGS += -D WIN32
+    TARGET := $(TARGET).exe
+else
+    UNAME_S := $(shell uname -s)
+    ifeq ($(UNAME_S),Linux)
+        CPPFLAGS += -D LINUX
+
+	# Matthias prefers colorgcc
+	CPP := colorgcc
+    endif
+    ifeq ($(UNAME_S),Darwin)
+        CPPFLAGS += -D OSX
+    endif
+endif
+
+
+#
+# Build targets
+#
 
 all: $(TARGET)
 
-$(TARGET): $(TARGET).cpp $(HEADERS)
-	$(CC) $(CFLAGS) -o $(TARGET).exe $(TARGET).cpp tdate.cpp ttime.cpp tlocation.cpp taddress.cpp tperson.cpp tmedium.cpp tlibrary.cpp tlibraryPool.cpp tcustomer.cpp
+$(TARGET): Makefile $(SOURCES) $(HEADERS) $(OBJECTS)
+	rm -f $@
+	$(CPP) $(CPPFLAGS) $(OBJECTS) -o $@
+
+%.o: %.cpp
+	$(CPP) $(CPPFLAGS) -c $^ -o $@
 
 clean:
-	$(RM) $(TARGET).exe
+	$(RM) -f $(TARGET) *.o *.elf
+
