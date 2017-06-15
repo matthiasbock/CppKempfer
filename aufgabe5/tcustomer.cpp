@@ -3,7 +3,7 @@ using namespace std;
 
 #include "tcustomer.h"
 
-TCustomer::TCustomer(ifstream& inFile)
+TCustomer::TCustomer(ifstream& inFile) : TPerson(inFile)
 {
     load(inFile);
 }

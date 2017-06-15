@@ -8,8 +8,7 @@ class TPerson
 {
     protected:
         string parseLine(string, string);
-        
-    private:
+
         string Name;
         TAddress *Address;
         TDate *Birthday;

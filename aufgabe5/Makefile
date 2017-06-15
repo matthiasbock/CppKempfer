@@ -11,7 +11,8 @@ RM = rm
 #  -g    adds debugging information to the executable file
 #  -Wall turns on most, but not all, compiler warnings
 #
-CPPFLAGS += -g -Wall
+CPFLAGS += -g -Wall
+LDFLAGS += -lstdc++
 
 #
 # Source files
@@ -49,7 +50,7 @@ all: $(TARGET)
 
 $(TARGET): Makefile $(SOURCES) $(HEADERS) $(OBJECTS)
 	rm -f $@
-	$(CPP) $(CPPFLAGS) $(OBJECTS) -o $@
+	$(CPP) $(LDFLAGS) $(OBJECTS) -o $@
 
 %.o: %.cpp
 	$(CPP) $(CPPFLAGS) -c $^ -o $@
