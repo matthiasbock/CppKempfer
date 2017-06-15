@@ -6,8 +6,11 @@ using namespace std;
 
 int main()
 {
+    cout << "Importing library pool from data.xml..." << endl;
     TLibraryPool LP("data.xml");
+    cout << "Import completed." << endl << endl;
 
+    cout << "This is your library pool:" << endl;
     LP.print();
     cout << endl;
 

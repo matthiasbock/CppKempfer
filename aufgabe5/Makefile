@@ -48,8 +48,11 @@ endif
 
 all: $(TARGET)
 
+run: $(TARGET)
+	@./$(TARGET)
+
 $(TARGET): Makefile $(SOURCES) $(HEADERS) $(OBJECTS)
-	rm -f $@
+	@rm -f $@
 	$(CPP) $(LDFLAGS) $(OBJECTS) -o $@
 
 %.o: %.cpp

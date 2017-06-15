@@ -12,10 +12,17 @@ using namespace std;
 TLibraryPool::TLibraryPool(string n, TPerson* p)
 :Name(n), Boss(p) {}
 
-TLibraryPool::TLibraryPool(string xmlFile)
-:Filename(xmlFile)
+/**
+ * @brief Import library pool from XML file
+ *
+ * @param filename: Name of the XML file to import
+ */
+TLibraryPool::TLibraryPool(string filename)
+:Filename(filename)
 {
+    // open XML file
     inFile.open(Filename.c_str());
+
     string tagToLookFor[] = {"<Name>", "<Chairman>", "<Library>", "<Customer>"};
     int maxTag = sizeof(tagToLookFor) / sizeof(*tagToLookFor);
     string line;
@@ -36,8 +43,11 @@ TLibraryPool::TLibraryPool(string xmlFile)
                     cout << "end of xml... bye" << endl;
                     break;
                 }
+
+                // parse all the tags
                 for(int i = 0; i < maxTag; i++)
                 {
+                    // tag found ?
                     if (line.find(tagToLookFor[i]) != string::npos )
                     {
                         switch(i)
@@ -58,7 +68,7 @@ TLibraryPool::TLibraryPool(string xmlFile)
                                 add(new TPerson(inFile));
                                 break;
                             default:
-                                cout << "Nothing found... in LibraryPool" << endl;
+                                cout << "Strange, we recognized something, but we didn't recognized it." << endl;
                                 break;
                         }
                     }
@@ -75,6 +85,9 @@ TLibraryPool::TLibraryPool(string xmlFile)
     inFile.close();
 }
 
+/**
+ * @brief Library pool destructor
+ */
 TLibraryPool::~TLibraryPool()
 {
     for(unsigned i = 0; i < LibraryList.size(); i++)
