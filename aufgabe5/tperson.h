@@ -14,6 +14,7 @@ class TPerson
         void load(ifstream&);
         
     public:
+        TPerson(): Name(""), Address(nullptr), Birthday(nullptr) {};
         TPerson(string, TAddress*, TDate*);
         TPerson(ifstream&);
         ~TPerson();

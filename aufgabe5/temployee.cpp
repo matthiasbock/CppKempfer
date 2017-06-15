@@ -16,17 +16,21 @@ TEmployee::TEmployee(
     string Name,
     TAddress *Address,
     TDate *Birthday,
-    string employeeNr
+    string EmployeeNr
     )
-:TPerson(Name, Address, Birthday),
- EmployeeNr(employeeNr)
-{};
+:TCustomer(),
+ EmployeeNr(EmployeeNr)
+{
+    this->Name = Name;
+    this->Address = Address;
+    this->Birthday = Birthday;
+};
 
 
 /**
  * Initialize employee from file
  */
-TEmployee::TEmployee(ifstream& inFile): TPerson(inFile)
+TEmployee::TEmployee(ifstream& inFile): TCustomer(inFile)
 {
     load(inFile);
 }

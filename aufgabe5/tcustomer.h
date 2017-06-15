@@ -16,6 +16,7 @@ class TCustomer: public TPerson
         void load(ifstream&);
 
     public:
+        TCustomer(): TPerson(), CustomerNr(0) {};
         TCustomer(ifstream&);
         string get_customerNr() const;
         void set_customerNr(string);

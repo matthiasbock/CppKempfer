@@ -17,7 +17,7 @@
 #include "tperson.h"
 #include "tcustomer.h"
 
-class TEmployee: TPerson
+class TEmployee: public TCustomer
 {
     protected:
         string EmployeeNr;
