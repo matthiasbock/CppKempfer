@@ -7,8 +7,6 @@
 
 using namespace std;
 
-#include "taddress.h"
-#include "tdate.h"
 #include "tperson.h"
 
 TPerson::TPerson(string Name, TAddress* Address, TDate*Birthday)

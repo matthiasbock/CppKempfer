@@ -1,6 +1,9 @@
 #ifndef TPERSON_H
 #define TPERSON_H
 
+#include "taddress.h"
+#include "tdate.h"
+
 class TPerson
 {
     protected:
