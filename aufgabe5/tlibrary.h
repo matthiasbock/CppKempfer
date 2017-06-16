@@ -1,6 +1,20 @@
 #ifndef TLIBRARY_H
 #define TLIBRARY_H
 
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+#include "xml.h"
+#include "tdate.h"
+#include "tlocation.h"
+#include "taddress.h"
+#include "tperson.h"
+#include "tmedium.h"
+
 class TLibrary
 {
     protected:
@@ -8,7 +22,7 @@ class TLibrary
         
     private:
         string Name;
-        TAddress* address;
+        TAddress* Address;
         TPerson* Manager;
         vector<TMedium*>MediumList;
         void load(ifstream&);
@@ -16,7 +30,15 @@ class TLibrary
     public:
         TLibrary(string, TAddress*, TPerson*);
         TLibrary(ifstream&);
+
+        /**
+         * @brief Create library by importing an XML element and it's child elements
+         * @param Pointer to XML node to import
+         */
+        TLibrary(xmlNodePtr);
+
         ~TLibrary();
+
         void setName(string);
         void setAddress(TAddress*);
         void setManager(TPerson*);

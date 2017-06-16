@@ -17,7 +17,10 @@ TCustomer::TCustomer(xmlNodePtr node)
 {
     xmlNodePtr childCustomerNr = xmlGetChildByName(node, "CustomerNr");
     if (childCustomerNr != nullptr)
+    {
         this->CustomerNr = string((char*) xmlNodeGetContent(childCustomerNr));
+        cout << "Customer number: " << this->CustomerNr << endl;
+    }
     else
         cout << "Warning: Child node <CustomerNr> for TCustomer not found" << endl;
 }

@@ -42,7 +42,10 @@ TEmployee::TEmployee(xmlNodePtr node)
 {
     xmlNodePtr childEmployeeNr = xmlGetChildByName(node, "EmployeeNr");
     if (childEmployeeNr != nullptr)
+    {
         this->EmployeeNr = string((char*) xmlNodeGetContent(childEmployeeNr));
+        cout << "Employee number: " << this->EmployeeNr << endl;
+    }
     else
         cout << "Warning: Child node <EmployeeNr> for TEmployee not found" << endl;
 }

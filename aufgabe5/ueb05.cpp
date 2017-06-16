@@ -10,15 +10,15 @@ const char* filename = "data.xml";
 int main()
 {
     cout << "Importing library pool from " << filename << "..." << endl;
-    xmlDoc *xml = xmlReadFile(filename, NULL, XML_PARSE_NOBLANKS);
-    TLibraryPool myLibraryPool(xmlDocGetRootElement(xml));
+    xmlDoc *doc = xmlReadFile(filename, NULL, XML_PARSE_NOBLANKS);
+    TLibraryPool myLibraryPool(xmlDocGetRootElement(doc));
     cout << "Import completed." << endl << endl;
 
     cout << "This is your library pool:" << endl;
     myLibraryPool.print();
     cout << endl;
 
-    xmlFreeDoc(xml);
+    xmlFreeDoc(doc);
     xmlCleanupParser();
 
     return 0;

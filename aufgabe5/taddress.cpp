@@ -30,11 +30,39 @@ TAddress::TAddress(xmlNodePtr node)
 {
     xmlNodePtr childStreet = xmlGetChildByName(node, "Street");
     if (childStreet != nullptr)
+    {
         this->Street = string((char*) xmlNodeGetContent(childStreet));
+        cout << "Street: " << this->Street << endl;
+    }
     else
         cout << "Warning: Child node <Street> for TAddress not found" << endl;
 
-    // TODO: read moar from XML
+    xmlNodePtr childNumber = xmlGetChildByName(node, "HouseNr");
+    if (childNumber != nullptr)
+    {
+        this->Number = string((char*) xmlNodeGetContent(childNumber));
+        cout << "Number: " << this->Number << endl;
+    }
+    else
+        cout << "Warning: Child node <Number> for TAddress not found" << endl;
+
+    xmlNodePtr childZipcode = xmlGetChildByName(node, "Zipcode");
+    if (childZipcode != nullptr)
+    {
+        this->Zipcode = string((char*) xmlNodeGetContent(childZipcode));
+        cout << "Zipcode: " << this->Zipcode << endl;
+    }
+    else
+        cout << "Warning: Child node <Zipcode> for TAddress not found" << endl;
+
+    xmlNodePtr childTown = xmlGetChildByName(node, "Town");
+    if (childTown != nullptr)
+    {
+        this->Town = string((char*) xmlNodeGetContent(childTown));
+        cout << "Town: " << this->Town << endl;
+    }
+    else
+        cout << "Warning: Child node <Town> for TAddress not found" << endl;
 }
 
 

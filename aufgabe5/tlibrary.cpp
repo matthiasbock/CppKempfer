@@ -1,25 +1,33 @@
 // class TLibrary
-#include <fstream>
-#include <iostream>
-#include <string>
-#include <vector>
 
-using namespace std;
-
-#include "tdate.h"
-#include "tlocation.h"
-#include "taddress.h"
-#include "tperson.h"
-#include "tmedium.h"
 #include "tlibrary.h"
 
 TLibrary::TLibrary(string name, TAddress* address, TPerson* Person )
-:Name(name), address(address), Manager(Person) {}
+:Name(name), Address(address), Manager(Person) {}
+
 
 TLibrary::TLibrary(ifstream& inFile)
 {
     load(inFile);
 }
+
+
+TLibrary::TLibrary(xmlNodePtr node)
+:Name(""),
+ Address(),
+ Manager(),
+ MediumList()
+{
+    xmlNodePtr nodeName = xmlGetChildByName(node, "Name");
+    if (nodeName != nullptr)
+    {
+        this->Name = string((char*) xmlNodeGetContent(nodeName));
+        cout << "Library name: " << this->Name << endl;
+    }
+    else
+        cout << "Warning: Node <Name> for TLibrary not found" << endl;
+}
+
 
 void TLibrary::load(ifstream& inFile)
 {
@@ -44,7 +52,7 @@ void TLibrary::load(ifstream& inFile)
                         Name = parseLine(line, tagToLookFor[i]);
                         break;
                     case 1:
-                        address = new TAddress(inFile);
+                        Address = new TAddress(inFile);
                         break;                        
                     case 2:
                         Manager = new TPerson(inFile);
@@ -76,7 +84,7 @@ TLibrary::~TLibrary()
     {
         delete MediumList[i];
     }
-    delete address;
+    delete Address;
     delete Manager;
 }
 
@@ -88,7 +96,7 @@ void TLibrary::add(TMedium *medium)
 void TLibrary::print()
 {
     cout << "Buecherei Filiale " << get_name() << endl;
-    address->print(); cout << endl;
+    Address->print(); cout << endl;
     cout << "Filialleister: ";
     Manager->print();
     cout << endl;
@@ -102,5 +110,5 @@ void TLibrary::print()
 }
 
 string TLibrary::get_name() const {return Name;}
-TAddress* TLibrary::get_address() const {return address;}
+TAddress* TLibrary::get_address() const {return Address;}
 TPerson* TLibrary::get_manager() const {return Manager;}
