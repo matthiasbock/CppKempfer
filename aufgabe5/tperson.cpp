@@ -49,7 +49,7 @@ void TPerson::load(ifstream& inFile)
                         Address = new TAddress(inFile);
                         break;
                     default:
-                        cout << "Nothing found... in Person" << endl;
+                        cout << "Unrecognized node type for TPerson: " << getXmlNodeType(line) << endl;
                         break;
                 }
             }

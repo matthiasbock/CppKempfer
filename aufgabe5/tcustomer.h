@@ -16,11 +16,23 @@ class TCustomer: public TPerson
         void load(ifstream&);
 
     public:
-        TCustomer(): TPerson(), CustomerNr(0) {};
+        /**
+         * @brief Default constructor
+         */
+        TCustomer(): TPerson(), CustomerNr("undefined") {};
+
+        /**
+         * @brief Create TCustomer by importing from XML file
+         */
         TCustomer(ifstream&);
+
+        /**
+         * @brief Print summary about customer
+         */
+        void print();
+
         string get_customerNr() const;
         void set_customerNr(string);
-        void print();
 };
 
 #endif

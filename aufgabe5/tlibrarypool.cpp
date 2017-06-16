@@ -1,26 +1,17 @@
 // class TLibraryPool
 
-#include <iostream>
-#include <string>
-#include <vector>
-#include <fstream>
-
-using namespace std;
-
 #include "tlibrarypool.h"
 
-TLibraryPool::TLibraryPool(string n, TPerson* p)
-:Name(n), Boss(p) {}
 
-/**
- * @brief Import library pool from XML file
- *
- * @param filename: Name of the XML file to import
- */
+TLibraryPool::TLibraryPool(string n, TPerson* p)
+:Name(n), Chairman(p) {}
+
+
 TLibraryPool::TLibraryPool(string filename)
 :Filename(filename)
 {
     // open XML file
+    cout << "Opening file: " << filename << endl;
     inFile.open(Filename.c_str());
 
     string tagToLookFor[] = {"<Name>", "<Chairman>", "<Library>", "<Customer>"};
@@ -30,64 +21,78 @@ TLibraryPool::TLibraryPool(string filename)
     // to be sure if file is found and is opened
     if (inFile.is_open())
     {
-        getline(inFile, line);
-        //cout << "first Line: " << line << endl; 
-        // check if xml format valid
-        if (line.find("<LibraryPool>") != string::npos) // here prolly same with >= 0
-        {
-            while (getline(inFile, line))
+        // search for beginning of library pool
+        do
+            if (!getline(inFile, line))
             {
-                // detect end of xml to prevent any problems
-                if (line.find("</LibraryPool>") != string::npos)
-                {
-                    cout << "end of xml... bye" << endl;
-                    break;
-                }
+                cout << "Error parsing XML: <LibraryPool> node not found" << endl;
+                return;
+            }
+        while (line.find("<LibraryPool>") < 0);
+        cout << "Parsing LibraryPool..." << endl;
 
-                // parse all the tags
-                for(int i = 0; i < maxTag; i++)
+        // parse the following lines until end tag
+        while (getline(inFile, line))
+        {
+            // detect end of XML node
+            if (line.find("</LibraryPool>") != string::npos)
+            {
+                cout << "Encountered end of LibraryPool XML node." << endl;
+                break;
+            }
+
+            // parse all the tags
+            for(int i = 0; i < maxTag; i++)
+            {
+                // tag found ?
+                if (line.find(tagToLookFor[i]) != string::npos )
                 {
-                    // tag found ?
-                    if (line.find(tagToLookFor[i]) != string::npos )
+                    switch(i)
                     {
-                        switch(i)
-                        {
-                             // find Pool name > save directly
-                            case 0:
-                                Name = getXmlNodeContent(line);
-                                break;
-                            // find Chairman > create TPerson and let it load
-                            case 1:
-                                Boss = new TPerson(inFile);
-                                break;
-                            // find Library > create TPerson and let it load then add to vector
-                            case 2:
-                                add(new TLibrary(inFile));
-                                break;
-                            case 3:
-                                add(new TPerson(inFile));
-                                break;
-                            default:
-                                cout << "Strange, we recognized something, but we didn't recognized it." << endl;
-                                break;
-                        }
+                         // find Pool name > save directly
+                        case 0:
+                            Name = getXmlNodeContent(line);
+                            goto xmlNodeRecognized;
+                            break;
+                        // find Chairman > create TCustomer and let it load
+                        case 1:
+                            Chairman = new TEmployee(inFile);
+                            goto xmlNodeRecognized;
+                            break;
+                        // find Library > create TCustomer and let it load then add to vector
+                        case 2:
+                            add(new TLibrary(inFile));
+                            goto xmlNodeRecognized;
+                            break;
+                        case 3:
+                            add(new TCustomer(inFile));
+                            goto xmlNodeRecognized;
+                            break;
+                        default:
+                            cout << "Alert: We should never arrive here." << endl;
+                            break;
                     }
                 }
             }
+
+            // we arrive here only, if no tag was recognized
+            cout << "Warning: Child node for TLibraryPool not recognized: " << getXmlNodeType(line) << endl;
+
+            xmlNodeRecognized:
+            continue;
         }
     }
     else
     {
-        cout << "Error opening file!" << endl;
+        cout << "Error: Failed to open file" << endl;
+        return;
     }
     
-    cout << "Closing file" << endl;
+    cout << "Closing XML file." << endl;
     inFile.close();
 }
 
-/**
- * @brief Library pool destructor
- */
+
 TLibraryPool::~TLibraryPool()
 {
     for(unsigned i = 0; i < LibraryList.size(); i++)
@@ -98,11 +103,11 @@ TLibraryPool::~TLibraryPool()
     {
         delete CustomerList[i];
     }
-    delete Boss;
+    delete Chairman;
 }
 
 
-void TLibraryPool::add(TPerson* customer)
+void TLibraryPool::add(TCustomer* customer)
 {
     CustomerList.push_back(customer);
 }
@@ -119,7 +124,7 @@ void TLibraryPool::print()
     cout << endl;
     cout << get_name() << endl;
     cout << "Leitung: ";
-    Boss->print();
+    Chairman->print();
     cout << endl;
     cout << "\nZum Buecherverband gehoeren " << LibraryList.size() << " Filialen" << endl;
     for(unsigned i = 0; i < LibraryList.size(); i++)
@@ -139,12 +144,20 @@ void TLibraryPool::print()
 }
 
 
-void TLibraryPool::set_name(string n) {Name = n;}
-void TLibraryPool::set_boss(TPerson* b) {Boss = b;}
-void TLibraryPool::set_customer(vector<TPerson*> cus) {CustomerList = cus;}
-void TLibraryPool::set_libraryList(vector<TLibrary*>lib) {LibraryList = lib;}
+/*
+ * Getter
+ */
 
 string TLibraryPool::get_name() const {return Name;}
-TPerson* TLibraryPool::get_boss() const {return Boss;}
-vector<TPerson*>TLibraryPool::get_customerList() const {return CustomerList;}
+TPerson* TLibraryPool::get_chairman() const {return Chairman;}
+vector<TCustomer*>TLibraryPool::get_customerList() const {return CustomerList;}
 vector<TLibrary*>TLibraryPool::get_libraryList() const {return LibraryList;}
+
+/*
+ * Setter
+ */
+
+void TLibraryPool::set_name(string n) {Name = n;}
+void TLibraryPool::set_chairman(TPerson* b) {Chairman = b;}
+void TLibraryPool::set_customerList(vector<TCustomer*> cus) {CustomerList = cus;}
+void TLibraryPool::set_libraryList(vector<TLibrary*>lib) {LibraryList = lib;}
