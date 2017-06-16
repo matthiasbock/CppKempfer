@@ -17,6 +17,9 @@ class TPerson
         TPerson(): Name(""), Address(nullptr), Birthday(nullptr) {};
         TPerson(string, TAddress*, TDate*);
         TPerson(ifstream&);
+
+        TPerson(xmlNodePtr);
+
         ~TPerson();
 
         string get_name() const;

@@ -1,9 +1,18 @@
 #
 # The compiler: gcc for C program, g++ for C++
 #
-CC = gcc
+CC := gcc
 CPP := g++
 RM = rm
+
+#
+# Paths, where compiler and linker can find all the stuff
+#
+LDFLAGS += -L/usr/lib/x86_64-linux-gnu
+
+INCLUDE += -I/usr/include
+INCLUDE += -I/usr/local/include
+INCLUDE += -I/usr/include/libxml2
 
 #
 # Compiler flags
@@ -11,14 +20,16 @@ RM = rm
 #  -g    adds debugging information to the executable file
 #  -Wall turns on most, but not all, compiler warnings
 #
+CFLAGS += -g -Wall
 CPPFLAGS += -g -Wall
-LDFLAGS += -lstdc++
+LDFLAGS += -lstdc++ -lxml2
 
 #
 # Source files
 #
-SOURCES = $(wildcard *.cpp)
-OBJECTS = $(SOURCES:.cpp=.o)
+C_SRC = $(wildcard *.c)
+CPP_SRC = $(wildcard *.cpp)
+OBJS = $(CPP_SRC:.cpp=.o)
 HEADERS = $(wildcard *.h)
 TARGET := ueb05
 
@@ -33,8 +44,9 @@ else
     ifeq ($(UNAME_S),Linux)
         CPPFLAGS += -D LINUX
 
-	# Matthias prefers colorgcc
-	CPP := colorgcc
+        # Matthias prefers colorgcc
+        CC := colorgcc
+        CPP := colorgcc
     endif
     ifeq ($(UNAME_S),Darwin)
         CPPFLAGS += -D OSX
@@ -48,15 +60,22 @@ endif
 
 all: $(TARGET)
 
+parse3: parse3.o
+	$(CC) $(LDFLAGS) $^ -o $@
+	./$@ data.xml
+
 run: $(TARGET)
 	@./$(TARGET)
 
-$(TARGET): Makefile $(SOURCES) $(HEADERS) $(OBJECTS)
+$(TARGET): Makefile $(CPP_SRC) $(HEADERS) $(OBJS)
 	@rm -f $@
-	$(CPP) $(LDFLAGS) $(OBJECTS) -o $@
+	$(CPP) $(LDFLAGS) $(OBJS) -o $@
+
+%.o: %.c
+	$(CC) $(CFLAGS) $(INCLUDE) -c $^ -o $@
 
 %.o: %.cpp
-	$(CPP) $(CPPFLAGS) -c $^ -o $@
+	$(CPP) $(CPPFLAGS) $(INCLUDE) -c $^ -o $@
 
 clean:
 	$(RM) -f $(TARGET) *.o *.elf

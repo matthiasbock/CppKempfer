@@ -22,7 +22,6 @@ class TLibraryPool
 {
     private:
         string Name;
-        string Filename;
         TPerson *Chairman;
         vector<TLibrary*> LibraryList;
         vector<TCustomer*> CustomerList;
@@ -35,13 +34,13 @@ class TLibraryPool
          * @param Name of the library pool
          * @param Chairman of the library pool
          */
-        TLibraryPool(string, TPerson*);
+        TLibraryPool(string, TCustomer*);
 
         /**
-         * @brief Create library pool by importing an XML file
-         * @param Name of the XML file to import
+         * @brief Create library pool by importing an XML element and it's child elements
+         * @param Pointer to XML node to import
          */
-        TLibraryPool(string);
+        TLibraryPool(xmlNodePtr);
 
         /**
          * @brief Library pool destructor

@@ -25,6 +25,13 @@ class TEmployee: public TCustomer
     public:
         TEmployee(string, TAddress*, TDate*, string);
         TEmployee(ifstream&);
+
+        /**
+         * @brief Create TEmployee by importing from XML node
+         * @param XML <Employee> node
+         */
+        TEmployee(xmlNodePtr);
+
         ~TEmployee();
 
         // load from file stream

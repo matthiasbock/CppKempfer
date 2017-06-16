@@ -11,6 +11,18 @@ TCustomer::TCustomer(ifstream& inFile)
 }
 
 
+TCustomer::TCustomer(xmlNodePtr node)
+:TPerson(node),
+ CustomerNr("undefined")
+{
+    xmlNodePtr childCustomerNr = xmlGetChildByName(node, "CustomerNr");
+    if (childCustomerNr != nullptr)
+        this->CustomerNr = string((char*) xmlNodeGetContent(childCustomerNr));
+    else
+        cout << "Warning: Child node <CustomerNr> for TCustomer not found" << endl;
+}
+
+
 void TCustomer::load(ifstream& inFile)
 {
     cout << "Parsing TCustomer..." << endl;

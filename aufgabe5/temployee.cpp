@@ -36,6 +36,18 @@ TEmployee::TEmployee(ifstream& inFile): TCustomer(inFile)
 }
 
 
+TEmployee::TEmployee(xmlNodePtr node)
+:TCustomer(node),
+ EmployeeNr("undefined")
+{
+    xmlNodePtr childEmployeeNr = xmlGetChildByName(node, "EmployeeNr");
+    if (childEmployeeNr != nullptr)
+        this->EmployeeNr = string((char*) xmlNodeGetContent(childEmployeeNr));
+    else
+        cout << "Warning: Child node <EmployeeNr> for TEmployee not found" << endl;
+}
+
+
 /**
  * Load employee from file
  */

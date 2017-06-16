@@ -26,6 +26,8 @@ class TCustomer: public TPerson
          */
         TCustomer(ifstream&);
 
+        TCustomer(xmlNodePtr);
+
         /**
          * @brief Print summary about customer
          */

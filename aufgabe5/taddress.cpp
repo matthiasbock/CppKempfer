@@ -21,6 +21,23 @@ TAddress::TAddress(ifstream& inFile)
     load(inFile);
 }
 
+
+TAddress::TAddress(xmlNodePtr node)
+:Street("undefined"),
+ Number("undefined"),
+ Zipcode("undefined"),
+ Town("undefined")
+{
+    xmlNodePtr childStreet = xmlGetChildByName(node, "Street");
+    if (childStreet != nullptr)
+        this->Street = string((char*) xmlNodeGetContent(childStreet));
+    else
+        cout << "Warning: Child node <Street> for TAddress not found" << endl;
+
+    // TODO: read moar from XML
+}
+
+
 void TAddress::load(ifstream& inFile)
 {
     string tagToLookFor[] = {"<Street>", "<Number>", "<Zipcode>", "<Town>"};

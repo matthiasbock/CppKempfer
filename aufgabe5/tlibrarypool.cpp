@@ -3,16 +3,27 @@
 #include "tlibrarypool.h"
 
 
-TLibraryPool::TLibraryPool(string n, TPerson* p)
+TLibraryPool::TLibraryPool(string n, TCustomer* p)
 :Name(n), Chairman(p) {}
 
 
-TLibraryPool::TLibraryPool(string filename)
-:Filename(filename)
+TLibraryPool::TLibraryPool(xmlNodePtr node)
+:Name(""),
+ Chairman(nullptr)
 {
-    // open XML file
-    cout << "Opening file: " << filename << endl;
-    inFile.open(Filename.c_str());
+    xmlNodePtr nodeName = xmlGetChildByName(node, "Name");
+    if (nodeName != nullptr)
+        this->Name = string((char*) xmlNodeGetContent(nodeName));
+    else
+        cout << "Warning: Node <Name> for TLibraryPool not found" << endl;
+
+    xmlNodePtr nodeChairman = xmlGetChildByName(node, "Chairman");
+    if (nodeChairman != nullptr)
+        this->Chairman = new TEmployee(nodeChairman);
+    else
+        cout << "Warning: Node <Chairman> for TLibraryPool not found" << endl;
+
+    return;
 
     string tagToLookFor[] = {"<Name>", "<Chairman>", "<Library>", "<Customer>"};
     int maxTag = sizeof(tagToLookFor) / sizeof(*tagToLookFor);

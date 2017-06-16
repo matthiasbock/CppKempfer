@@ -3,6 +3,9 @@
 .cproject
 .settings
 
+# Testing
+parse3.c
+
 # Prerequisites
 *.d
 
@@ -40,6 +43,7 @@ ueb02
 ueb03
 ueb04
 ueb05
+parse3
 ueb06
 ueb07
 ueb08

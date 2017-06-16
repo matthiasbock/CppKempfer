@@ -17,6 +17,26 @@ TPerson::TPerson(ifstream& inFile)
     load(inFile);
 }
 
+
+TPerson::TPerson(xmlNodePtr node)
+:Name("undefined"),
+ Address(),
+ Birthday()
+{
+    xmlNodePtr childName = xmlGetChildByName(node, "Name");
+    if (childName != nullptr)
+        this->Name = string((char*) xmlNodeGetContent(childName));
+    else
+        cout << "Warning: Child node <Name> for TPerson not found" << endl;
+
+    xmlNodePtr childAddress = xmlGetChildByName(node, "Address");
+    if (childAddress != nullptr)
+        this->Address = new TAddress(childAddress);
+    else
+        cout << "Warning: Child node <Address> for TPerson not found" << endl;
+}
+
+
 void TPerson::load(ifstream& inFile)
 {
     string tagToLookFor[] = {"<Name>", "<Birthday>", "<Address>"};

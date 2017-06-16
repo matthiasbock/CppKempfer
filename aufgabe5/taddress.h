@@ -15,6 +15,8 @@ class TAddress
     public:
         TAddress(string, string, string, string);
         TAddress(ifstream&);
+        TAddress(xmlNodePtr);
+
         string get_street() const;
         string get_number() const;
         string get_zipcode() const;
