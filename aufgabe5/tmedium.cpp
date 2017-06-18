@@ -2,64 +2,49 @@
 
 #include "tmedium.h"
 
+
 TMedium::TMedium(string Name, string Signature, TLocation* Location, int FSK, Status status)
-:Name(Name), Signature(Signature), Location(Location), FSK(FSK)
+:Title(Name), Signature(Signature), Location(Location), FSK(FSK)
 {
     set_status(status);
 }
 
+
+TMedium::TMedium(xmlNodePtr node)
+{
+    Title = xmlGetString(node, "Title", "TMedium");
+    Signature = xmlGetString(node, "Signature", "TMedium");
+    FSK = xmlGetInt(node, "FSK", "TMedium");
+    set_status( xmlGetInt(node, "Status", "TMedium") );
+
+    xmlNodePtr childNode;
+    childNode = xmlGetChildByName(node, "Location");
+    if (childNode != nullptr)
+    {
+        Location = new TLocation(childNode);
+    }
+    else
+        cout << "Warning: Node <Location> for TMedium not found" << endl;
+}
+
+
 TMedium::~TMedium()
 {
-    cout << "Das Medium " << Name << " mit der Signatur " << Signature << " wird vernichtet!" << endl;
+    cout << "Das Medium " << Title << " mit der Signatur " << Signature << " wird vernichtet!" << endl;
 }
 
-TMedium::TMedium(ifstream& inFile)
+
+void TMedium::print()
 {
-    load(inFile);
+    //char tmp = cout.fill();
+    cout.fill(' ');
+    cout << setw(10) << left << "Titel: "<< get_title() << endl;
+    cout << setw(10) << left << "Signatur: " << get_signature() << endl;
+    cout << setw(10) << left << "Ort:"; Location->print(); cout << endl;
+    cout << setw(10) << left << "FSK:" << "freigegeben ab " << get_FSK() << " Jahren" << endl;
+    cout << setw(10) << left << "Status: " << get_status();
 }
 
-void TMedium::load(ifstream& inFile)
-{
-    string tagToLookFor[] = {"<Title>", "<Signatur>", "<Location>", "<FSK>", "<Status>"};
-    int maxTag = sizeof(tagToLookFor) / sizeof(*tagToLookFor);
-    string line;
-    
-    while (getline(inFile, line))
-    {
-        // detect end of Medium to prevent any problems
-        if (line.find("</Medium>") != string::npos)
-        {
-            break;
-        }
-        for(int i = 0; i < maxTag; i++)
-        {
-            if (line.find(tagToLookFor[i]) != string::npos )
-            {
-                switch(i)
-                {
-                    case 0:
-                        Name = getXmlNodeContent(line);
-                        break;
-                    case 1:
-                        Signature = getXmlNodeContent(line);
-                        break;
-                    case 2:
-                        Location = new TLocation(inFile);
-                        break;
-                    case 3:
-                        FSK = atoi(getXmlNodeContent(line).c_str());
-                        break;
-                    case 4:
-                        set_status(atoi(getXmlNodeContent(line).c_str()));
-                        break;      
-                    default:
-                        cout << "Unrecognized child node type for TMedium: " << getXmlNodeType(line) << endl;
-                        break;
-                }
-            }
-        }
-    }
-}
 
 void TMedium::set_status(int statusInt)
 {
@@ -83,15 +68,7 @@ void TMedium::set_status(int statusInt)
     }
 }
 
-void TMedium::set_status(Status st) {status = st;}
-void TMedium::set_name(string n) { Name = n; }
-void TMedium::set_signature(string s) { Signature = s; }
-void TMedium::set_FSK(int age) { FSK = age;}
-void TMedium::set_location(TLocation* location) { Location = location; }
 
-string TMedium::get_name() const { return Name; }
-string TMedium::get_signature() const {return Signature;}
-int TMedium::get_FSK() const {return FSK;}
 string TMedium::get_status() const
 {
     switch(status)
@@ -109,13 +86,13 @@ string TMedium::get_status() const
     }
 }
 
-void TMedium::print()
-{
-    //char tmp = cout.fill();
-    cout.fill(' ');
-    cout << setw(10) << left << "Titel: "<< get_name() << endl;
-    cout << setw(10) << left << "Signatur: " << get_signature() << endl;
-    cout << setw(10) << left << "Ort:"; Location->print(); cout << endl;
-    cout << setw(10) << left << "FSK:" << "freigegeben ab " << get_FSK() << " Jahren" << endl;
-    cout << setw(10) << left << "Status: " << get_status();
-}
+
+string TMedium::get_title() const { return Title; }
+string TMedium::get_signature() const {return Signature;}
+int TMedium::get_FSK() const {return FSK;}
+
+void TMedium::set_status(Status st) {status = st;}
+void TMedium::set_title(string n) { Title = n; }
+void TMedium::set_signature(string s) { Signature = s; }
+void TMedium::set_FSK(int age) { FSK = age;}
+void TMedium::set_location(TLocation* location) { Location = location; }

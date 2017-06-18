@@ -7,13 +7,13 @@
 #include <fstream>
 #include "tperson.h"
 
+using namespace std;
+
+
 class TCustomer: public TPerson
 {
     protected:
         string CustomerNr;
-
-    private:
-        void load(ifstream&);
 
     public:
         /**

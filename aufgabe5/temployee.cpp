@@ -6,16 +6,7 @@ TEmployee::TEmployee(xmlNodePtr node)
 :TCustomer(node),
  EmployeeNr("undefined")
 {
-    xmlNodePtr childNode;
-
-    childNode = xmlGetChildByName(node, "EmployeeNr");
-    if (childNode != nullptr)
-    {
-        this->EmployeeNr = string((char*) xmlNodeGetContent(childNode));
-        cout << "Employee number: " << this->EmployeeNr << endl;
-    }
-    else
-        cout << "Warning: Child node <EmployeeNr> for TEmployee not found" << endl;
+    this->EmployeeNr = xmlGetString(node, "EmployeeNr", "TEmployee");
 }
 
 
@@ -27,11 +18,7 @@ TEmployee::~TEmployee()
 
 void TEmployee::print()
 {
-    cout << Name;
-    cout << " *";
-    Birthday->print();
-    cout << endl;
-    Address->print(); 
+    cout << "Employee number: " << EmployeeNr << endl;
 }
 
 

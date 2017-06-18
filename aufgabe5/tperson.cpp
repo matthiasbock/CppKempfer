@@ -16,19 +16,12 @@ TPerson::TPerson(xmlNodePtr node)
 {
     xmlNodePtr childNode;
 
-    childNode = xmlGetChildByName(node, "Name");
-    if (childNode != nullptr)
-    {
-        this->Name = string((char*) xmlNodeGetContent(childNode));
-        cout << "Person's name: " << this->Name << endl;
-    }
-    else
-        cout << "Warning: Child node <Name> for TPerson not found" << endl;
+    this->Name = xmlGetString(node, "Name", "TPerson");
 
     childNode = xmlGetChildByName(node, "Address");
     if (childNode != nullptr)
     {
-        cout << "Person's address:" << endl;
+        cout << "Parsing TPerson's address:" << endl;
         this->Address = new TAddress(childNode);
     }
     else
@@ -37,11 +30,11 @@ TPerson::TPerson(xmlNodePtr node)
     childNode = xmlGetChildByName(node, "Birthday");
     if (childNode != nullptr)
     {
-        cout << "Person's birthday:" << endl;
+        cout << "Parsing TPerson's birthday:" << endl;
         this->Birthday = new TDate(childNode);
     }
     else
-        cout << "Warning: Child node <Address> for TPerson not found" << endl;
+        cout << "Warning: Child node <Birthday> for TPerson not found" << endl;
 }
 
 

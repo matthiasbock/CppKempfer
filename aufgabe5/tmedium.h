@@ -18,7 +18,7 @@ class TMedium
         enum Status {verfuegbar, ausgeliehen, bestellt, reserviert};
 
     private:
-        string Name;
+        string Title;
         string Signature;
         TLocation* Location;
         int FSK;
@@ -27,23 +27,24 @@ class TMedium
         
     public:
         TMedium();
-        ~TMedium();
         TMedium(string, string, TLocation*, int, Status);
-        TMedium(ifstream&);
+        TMedium(xmlNodePtr);
+        ~TMedium();
+
         void print();
         
+        string get_status() const;
+        string get_title() const;
+        string get_signature() const;
+        int get_FSK() const;
+
         void set_status(Status);
         void set_status(int);
-        void set_name(string);
+        void set_title(string);
         void set_signature(string);
         void set_FSK(int);
         void set_location(TLocation*);
-        
-        string get_status() const;
-        string get_name() const;
-        string get_signature() const;
-        int get_FSK() const;    
-        
+
 };
 
 #endif

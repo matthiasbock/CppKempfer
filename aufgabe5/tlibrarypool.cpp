@@ -26,27 +26,22 @@ void TLibraryPool::loadFromFile(string filename)
 
 void TLibraryPool::loadFromXML(xmlNodePtr node)
 {
-    xmlNodePtr nodeName = xmlGetChildByName(node, "Name");
-    if (nodeName != nullptr)
-    {
-        this->Name = string((char*) xmlNodeGetContent(nodeName));
-        cout << "Library pool name: " << this->Name << endl;
-    }
-    else
-        cout << "Warning: Node <Name> for TLibraryPool not found" << endl;
+    xmlNodePtr childNode;
 
-    xmlNodePtr nodeChairman = xmlGetChildByName(node, "Chairman");
-    if (nodeChairman != nullptr)
+    Name = xmlGetString(node, "Name", "TLibraryPool");
+
+    childNode = xmlGetChildByName(node, "Chairman");
+    if (childNode != nullptr)
     {
         cout << "Parsing chairman..." << endl;
-        this->Chairman = new TEmployee(nodeChairman);
+        this->Chairman = new TEmployee(childNode);
     }
     else
         cout << "Warning: Node <Chairman> for TLibraryPool not found" << endl;
 
     vector<xmlNodePtr> libraryNodes;
     xmlGetChildrenByName(node, "Library", libraryNodes);
-    for (int i=0; i<libraryNodes.size(); i++)
+    for (unsigned int i=0; i<libraryNodes.size(); i++)
     {
         this->LibraryList.push_back(new TLibrary(libraryNodes.at(i)));
     }

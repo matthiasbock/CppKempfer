@@ -1,14 +1,14 @@
 
 #include "xml.h"
 
-string getXmlNodeContent(string line)
+string xmlGetNodeContent(string line)
 {
     int begin = line.find(">") + 1;
     int length = line.find("</") - begin;
     return line.substr(begin, length);
 }
 
-string getXmlNodeType(string line)
+string xmlGetNodeType(string line)
 {
     int begin = line.find("<") + 1;
     int length = line.find(">") - begin;
@@ -80,4 +80,41 @@ void xmlGetChildrenByName(xmlNodePtr node, const char* name, vector<xmlNodePtr>&
         node = node->next;
     }
 //    cout << "Node list length: " << nodes.size() << endl;
+}
+
+
+string xmlGetString(xmlNodePtr parent, const char *childName, string targetClass)
+{
+    xmlNodePtr childNode = xmlGetChildByName(parent, childName);
+    if (childNode != nullptr)
+    {
+        string s = string((char*) xmlNodeGetContent(childNode));
+        cout << targetClass << "." << childName << " = \"" << s << "\";" << endl;
+        return s;
+    }
+    else
+        cout << "Warning: Child node <" << childName << "> for " << targetClass << " not found." << endl;
+    return "";
+}
+
+
+int xmlGetInt(xmlNodePtr parent, const char *childName, string targetClass)
+{
+    xmlNodePtr childNode = xmlGetChildByName(parent, childName);
+    if (childNode != nullptr)
+    {
+        try
+        {
+            int i = atoi((char*) xmlNodeGetContent(childNode));
+            cout << targetClass << "." << childName << " = " << i << ";" << endl;
+            return i;
+        }
+        catch (exception e)
+        {
+            cout << "Error: Conversion of string to int failed for child node <Year> for TDate." << endl;
+        }
+    }
+    else
+        cout << "Warning: Child node <" << childName << "> for " << targetClass << " not found" << endl;
+    return -1;
 }

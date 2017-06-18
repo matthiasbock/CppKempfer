@@ -1,7 +1,13 @@
 #ifndef TADDRESS_H
 #define TADDRESS_H
 
+#include <fstream>
+#include <iostream>
+#include <string>
 #include "xml.h"
+
+using namespace std;
+
 
 class TAddress
 {
@@ -10,11 +16,9 @@ class TAddress
         string Number;
         string Zipcode;
         string Town;
-        void load(ifstream&);
-        
+
     public:
         TAddress(string, string, string, string);
-        TAddress(ifstream&);
         TAddress(xmlNodePtr);
 
         string get_street() const;

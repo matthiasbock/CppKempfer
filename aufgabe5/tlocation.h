@@ -1,21 +1,29 @@
+
 #ifndef TLOCATION_H
 #define TLOCATION_H
 
+#include <fstream>
+#include <iostream>
+#include <string>
+
+#include "xml.h"
+
+using namespace std;
+
+
 class TLocation
 {
-    protected:
-        string parseLine(string, string);
-        
     private:
         string section;
         string rack;
-        void load(ifstream&);
         
     public:
         TLocation();
-        TLocation(ifstream&);
         TLocation(string section, string rack);
+        TLocation(xmlNodePtr);
+
         void print();
+
         string get_section() const;
         string get_rack() const;
         void set_section(string section);

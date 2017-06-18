@@ -16,16 +16,20 @@ TLibrary::TLibrary(xmlNodePtr node)
  Manager(),
  MediumList()
 {
-    string tagToLookFor[] = {"<Name>", "<Address>", "<Manager>", "<Medium>"};
+    this->Name = xmlGetString(node, "Name", "TLibrary");
 
-    xmlNodePtr nodeName = xmlGetChildByName(node, "Name");
-    if (nodeName != nullptr)
+    xmlNodePtr childNode;
+
+    childNode = xmlGetChildByName(node, "Address");
+    if (childNode != nullptr)
     {
-        this->Name = string((char*) xmlNodeGetContent(nodeName));
-        cout << "Library name: " << this->Name << endl;
+        cout << "Parsing library address..." << endl;
+        this->Address = new TAddress(childNode);
     }
     else
-        cout << "Warning: Node <Name> for TLibrary not found" << endl;
+        cout << "Warning: Node <Address> for TLibrary not found" << endl;
+
+    // TODO: Manager, Mediums
 }
 
 
