@@ -38,16 +38,22 @@ class TLibraryPool
         TLibraryPool(string, TCustomer*);
 
         /**
-         * @brief Create library pool by importing an XML element and it's child elements
-         * @param Pointer to XML node to import
+         * @brief Create library pool by importing a file
+         * @param Name of file to import
          */
-        TLibraryPool(xmlNodePtr);
+        TLibraryPool(string);
 
         /**
          * @brief Create library pool by importing a file
          * @param Name of file to import
          */
-        TLibraryPool(string);
+        void loadFromFile(string);
+
+        /**
+         * @brief Create library pool by importing an XML element and it's child elements
+         * @param Pointer to XML node to import
+         */
+        void loadFromXML(xmlNodePtr);
 
         /**
          * @brief Library pool destructor

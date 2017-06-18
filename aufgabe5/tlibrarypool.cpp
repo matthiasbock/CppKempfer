@@ -7,9 +7,24 @@ TLibraryPool::TLibraryPool(string n, TCustomer* p)
 :Name(n), Chairman(p) {}
 
 
-TLibraryPool::TLibraryPool(xmlNodePtr node)
-:Name(""),
- Chairman(nullptr)
+TLibraryPool::TLibraryPool(string filename)
+{
+    loadFromFile(filename);
+}
+
+
+void TLibraryPool::loadFromFile(string filename)
+{
+    cout << "Importing library pool from \"" << filename << "\"..." << endl;
+
+    this->xml = xmlReadFile(filename.c_str(), NULL, XML_PARSE_NOBLANKS);
+    this->loadFromXML(xmlDocGetRootElement(this->xml));
+
+    cout << "Import completed." << endl << endl;
+}
+
+
+void TLibraryPool::loadFromXML(xmlNodePtr node)
 {
     xmlNodePtr nodeName = xmlGetChildByName(node, "Name");
     if (nodeName != nullptr)
@@ -40,17 +55,6 @@ TLibraryPool::TLibraryPool(xmlNodePtr node)
     xmlGetChildrenByName(node, "Customer", customerNodes);
 
     return;
-}
-
-
-TLibraryPool::TLibraryPool(string filename)
-{
-    cout << "Importing library pool from \"" << filename << "\"..." << endl;
-
-    this->xml = xmlReadFile(filename.c_str(), NULL, XML_PARSE_NOBLANKS);
-    TLibraryPool(xmlDocGetRootElement(this->xml));
-
-    cout << "Import completed." << endl << endl;
 }
 
 
@@ -116,17 +120,13 @@ void TLibraryPool::print()
 
 
 /*
- * Getter
+ * getter and setter
  */
 
 string TLibraryPool::get_name() const {return Name;}
 TPerson* TLibraryPool::get_chairman() const {return Chairman;}
 vector<TCustomer*>TLibraryPool::get_customerList() const {return CustomerList;}
 vector<TLibrary*>TLibraryPool::get_libraryList() const {return LibraryList;}
-
-/*
- * Setter
- */
 
 void TLibraryPool::set_name(string n) {Name = n;}
 void TLibraryPool::set_chairman(TPerson* b) {Chairman = b;}
