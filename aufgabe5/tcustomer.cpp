@@ -21,5 +21,5 @@ void TCustomer::print()
 {
 	((TPerson*) this)->print();
 
-	cout << "Customer number: " << this->CustomerNr << endl;
+	cout << "Kundennummer: " << this->CustomerNr << endl;
 }

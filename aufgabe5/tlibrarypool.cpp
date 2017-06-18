@@ -17,8 +17,8 @@ void TLibraryPool::loadFromFile(string filename)
 {
     cout << "Importing library pool from \"" << filename << "\"..." << endl;
 
-    this->xml = xmlReadFile(filename.c_str(), NULL, XML_PARSE_NOBLANKS);
-    this->loadFromXML(xmlDocGetRootElement(this->xml));
+    xml = xmlReadFile(filename.c_str(), NULL, XML_PARSE_NOBLANKS);
+    loadFromXML(xmlDocGetRootElement(xml));
 
     cout << "Import completed." << endl << endl;
 }
@@ -39,15 +39,19 @@ void TLibraryPool::loadFromXML(xmlNodePtr node)
     else
         cout << "Warning: Node <Chairman> for TLibraryPool not found" << endl;
 
-    vector<xmlNodePtr> libraryNodes;
-    xmlGetChildrenByName(node, "Library", libraryNodes);
-    for (unsigned int i=0; i<libraryNodes.size(); i++)
+    vector<xmlNodePtr> nodes;
+
+    xmlGetChildrenByName(node, "Library", nodes);
+    for (unsigned int i=0; i<nodes.size(); i++)
     {
-        this->LibraryList.push_back(new TLibrary(libraryNodes.at(i)));
+        this->LibraryList.push_back(new TLibrary(nodes.at(i)));
     }
 
-    vector<xmlNodePtr> customerNodes;
-    xmlGetChildrenByName(node, "Customer", customerNodes);
+    xmlGetChildrenByName(node, "Customer", nodes);
+    for (unsigned int i=0; i<nodes.size(); i++)
+    {
+        this->CustomerList.push_back(new TCustomer(nodes.at(i)));
+    }
 
     return;
 }
@@ -55,7 +59,7 @@ void TLibraryPool::loadFromXML(xmlNodePtr node)
 
 TLibraryPool::~TLibraryPool()
 {
-    cout << "Deconstructing library pool \"" << this->Name << "\"..." << endl;
+    cout << "Deconstructing TLibraryPool \"" << this->Name << "\"..." << endl;
 
     // free sub-objects
     for(unsigned i = 0; i < LibraryList.size(); i++)

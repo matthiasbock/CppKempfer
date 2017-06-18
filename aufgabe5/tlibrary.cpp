@@ -53,10 +53,16 @@ void TLibrary::add(TMedium *medium)
 void TLibrary::print()
 {
     cout << "Buecherei Filiale " << get_name() << endl;
-    Address->print(); cout << endl;
+
+    Address->print();
+
     cout << "Filialleiter: ";
-    Manager->print();
+    if (Manager != nullptr)
+        Manager->print();
+    else
+        cout << "undefined";
     cout << endl;
+
     cout << "Es stehen " << MediumList.size() << " Medium/Medien zur Verfuegung:" << endl;
     for(unsigned i = 0; i < MediumList.size(); i++)
     {

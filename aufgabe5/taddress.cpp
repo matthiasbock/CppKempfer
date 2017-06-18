@@ -23,7 +23,7 @@ TAddress::TAddress(xmlNodePtr node)
 
 void TAddress::print()
 {
-    cout << Street << " " << Number << "; " << Zipcode << " " << Town;
+    cout << Street << " " << Number << endl << Zipcode << " " << Town << endl;
 }
 
 

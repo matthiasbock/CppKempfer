@@ -47,11 +47,13 @@ TPerson::~TPerson()
 
 void TPerson::print()
 {
-    cout << Name;
-    cout << " *";
+    cout << "Name: " << Name << endl;
+
+    cout << "Geburtstag: ";
     Birthday->print();
     cout << endl;
-    Address->print(); 
+
+    Address->print();
 }
 
 
