@@ -34,14 +34,14 @@ TPerson::TPerson(xmlNodePtr node)
     else
         cout << "Warning: Child node <Address> for TPerson not found" << endl;
 
-//    childNode = xmlGetChildByName(node, "Birthday");
-//    if (childNode != nullptr)
-//    {
-//        cout << "Person's birthday:" << endl;
-//        this->Birthday = new TDate(childNode);
-//    }
-//    else
-//        cout << "Warning: Child node <Address> for TPerson not found" << endl;
+    childNode = xmlGetChildByName(node, "Birthday");
+    if (childNode != nullptr)
+    {
+        cout << "Person's birthday:" << endl;
+        this->Birthday = new TDate(childNode);
+    }
+    else
+        cout << "Warning: Child node <Address> for TPerson not found" << endl;
 }
 
 

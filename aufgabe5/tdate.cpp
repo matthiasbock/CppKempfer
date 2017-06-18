@@ -1,83 +1,85 @@
 // class tdate
-#include <fstream>
-#include <iostream>
-#include <ctime>
-#include <iomanip>
-#include <cstdlib>
-
-using namespace std;
 
 #include "tdate.h"
 
+
 TDate::TDate()
 {
-    now = time(0);
+    time_t now = time(0);
     tm *ltm = localtime(&now);
-    dd = ltm->tm_mday;
-    mm = 1 + ltm->tm_mon;
-    yyyy = 1900 + ltm->tm_year;
+    day = ltm->tm_mday;
+    month = 1 + ltm->tm_mon;
+    year = 1900 + ltm->tm_year;
 }
+
 
 TDate::TDate(int dd, int mm, int yyyy)
 {
-    this->dd = dd;
-    this->mm = mm;
-    this->yyyy = yyyy;
+    this->day = dd;
+    this->month = mm;
+    this->year = yyyy;
 }
 
-TDate::TDate(ifstream& inFile)
-{
-    load(inFile);
-}
 
-void TDate::load(ifstream& inFile)
+TDate::TDate(xmlNodePtr node)
+:day(0),
+ month(0),
+ year(0)
 {
-    string tagToLookFor[] = {"<Day>", "<Month>", "<Year>"};
-    int maxTag = sizeof(tagToLookFor) / sizeof(*tagToLookFor);
-    string line;
-    
-    while (getline(inFile, line))
+    xmlNodePtr childNode;
+
+    childNode = xmlGetChildByName(node, "Day");
+    if (childNode != nullptr)
     {
-        // detect end of Date to prevent any problems
-        if (line.find("</Date>") != string::npos)
+        try
         {
-            break;
+            this->day = atoi((char*) xmlNodeGetContent(childNode));
+            cout << "Day: " << this->day << endl;
         }
-        for(int i = 0; i < maxTag; i++)
+        catch (exception e)
         {
-            if (line.find(tagToLookFor[i]) != string::npos )
-            {
-                switch(i)
-                {
-                    case 0:
-                        dd = atoi(parseLine(line, tagToLookFor[i]).c_str());
-                        break;
-                    case 1:
-                        mm = atoi(parseLine(line, tagToLookFor[i]).c_str());
-                        break;
-                    case 2:
-                        yyyy = atoi(parseLine(line, tagToLookFor[i]).c_str());
-                        break;
-                    default:
-                        cout << "Nothing found... in Date" << endl;
-                        break;
-                }
-            }
+            cout << "Error: Conversion of string to int failed for child node <Day> for TDate." << endl;
         }
     }
+    else
+        cout << "Warning: Child node <Day> for TDate not found" << endl;
+
+    childNode = xmlGetChildByName(node, "Month");
+    if (childNode != nullptr)
+    {
+        try
+        {
+            this->month = atoi((char*) xmlNodeGetContent(childNode));
+            cout << "Month: " << this->month << endl;
+        }
+        catch (exception e)
+        {
+            cout << "Error: Conversion of string to int failed for child node <Month> for TDate." << endl;
+        }
+    }
+    else
+        cout << "Warning: Child node <Month> for TDate not found" << endl;
+
+    childNode = xmlGetChildByName(node, "Year");
+    if (childNode != nullptr)
+    {
+        try
+        {
+            this->year = atoi((char*) xmlNodeGetContent(childNode));
+            cout << "Year: " << this->year << endl;
+        }
+        catch (exception e)
+        {
+            cout << "Error: Conversion of string to int failed for child node <Year> for TDate." << endl;
+        }
+    }
+    else
+        cout << "Warning: Child node <Year> for TDate not found" << endl;
 }
 
-string TDate::parseLine(string line, string tagToBeStriped)
-{
-    string tagEndBegin = "</";
-    size_t tagStartPos = line.find(tagToBeStriped);
-    int messageLength = line.length() - ((tagStartPos + 1) + (tagToBeStriped.length() * 2) + 1);
-    int messageStart = tagStartPos+tagToBeStriped.length(); 
-    return line.substr(messageStart, messageLength);
-}
 
 void TDate::print()
 {
     cout.fill('0');
-    cout << setw(2) << dd << '.' << setw(2) << mm << '.' << yyyy;
+    cout << setw(2) << day << '.' << setw(2) << month << '.' << year;
 }
