@@ -11,25 +11,31 @@ TLibrary::TLibrary(string name, TAddress* address, TPerson* Person )
 
 
 TLibrary::TLibrary(xmlNodePtr node)
-:Name(""),
- Address(),
- Manager(),
- MediumList()
+:MediumList()
 {
-    this->Name = xmlGetString(node, "Name", "TLibrary");
-
     xmlNodePtr childNode;
+
+    Name = xmlGetString(node, "Name", "TLibrary");
 
     childNode = xmlGetChildByName(node, "Address");
     if (childNode != nullptr)
     {
         cout << "Parsing library address..." << endl;
-        this->Address = new TAddress(childNode);
+        Address = new TAddress(childNode);
     }
     else
         cout << "Warning: Node <Address> for TLibrary not found" << endl;
 
-    // TODO: Manager, Mediums
+    childNode = xmlGetChildByName(node, "Manager");
+    if (childNode != nullptr)
+    {
+        cout << "Parsing library manager..." << endl;
+        Manager = new TEmployee(childNode);
+    }
+    else
+        cout << "Warning: Node <Address> for TLibrary not found" << endl;
+
+    // TODO: Mediums
 }
 
 
@@ -58,7 +64,10 @@ void TLibrary::print()
 
     cout << "Filialleiter: ";
     if (Manager != nullptr)
+    {
+        cout << endl;
         Manager->print();
+    }
     else
         cout << "undefined";
     cout << endl;

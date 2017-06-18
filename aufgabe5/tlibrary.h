@@ -12,7 +12,7 @@ using namespace std;
 #include "tdate.h"
 #include "tlocation.h"
 #include "taddress.h"
-#include "tperson.h"
+#include "temployee.h"
 #include "tmedium.h"
 
 class TLibrary
