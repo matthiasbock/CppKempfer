@@ -43,8 +43,22 @@ TLibraryPool::TLibraryPool(xmlNodePtr node)
 }
 
 
+TLibraryPool::TLibraryPool(string filename)
+{
+    cout << "Importing library pool from \"" << filename << "\"..." << endl;
+
+    this->xml = xmlReadFile(filename.c_str(), NULL, XML_PARSE_NOBLANKS);
+    TLibraryPool(xmlDocGetRootElement(this->xml));
+
+    cout << "Import completed." << endl << endl;
+}
+
+
 TLibraryPool::~TLibraryPool()
 {
+    cout << "Deconstructing library pool \"" << this->Name << "\"..." << endl;
+
+    // free sub-objects
     for(unsigned i = 0; i < LibraryList.size(); i++)
     {
         delete LibraryList[i];
@@ -54,6 +68,13 @@ TLibraryPool::~TLibraryPool()
         delete CustomerList[i];
     }
     delete Chairman;
+
+    // free XML document
+    if (this->xml != nullptr)
+    {
+        xmlFreeDoc(this->xml);
+        xmlCleanupParser();
+    }
 }
 
 

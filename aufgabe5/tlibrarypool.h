@@ -27,6 +27,7 @@ class TLibraryPool
         vector<TCustomer*> CustomerList;
         vector<TEmployee*> EmployeeList;
         ifstream inFile;
+        xmlDoc *xml = nullptr;
 
     public:
         /**
@@ -41,6 +42,12 @@ class TLibraryPool
          * @param Pointer to XML node to import
          */
         TLibraryPool(xmlNodePtr);
+
+        /**
+         * @brief Create library pool by importing a file
+         * @param Name of file to import
+         */
+        TLibraryPool(string);
 
         /**
          * @brief Library pool destructor
