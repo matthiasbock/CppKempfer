@@ -17,16 +17,12 @@ class TCustomer: public TPerson
 
     public:
         /**
-         * @brief Default constructor
+         * @brief Create TCustomer by importing from XML
+         * @param XML node to import
          */
-        TCustomer(): TPerson(), CustomerNr("undefined") {};
-
-        /**
-         * @brief Create TCustomer by importing from XML file
-         */
-        TCustomer(ifstream&);
-
         TCustomer(xmlNodePtr);
+
+        ~TCustomer();
 
         /**
          * @brief Print summary about customer

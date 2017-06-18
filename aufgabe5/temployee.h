@@ -10,38 +10,41 @@
 #ifndef TEMPLOYEE_H
 #define TEMPLOYEE_H
 
-#include "xml.h"
+#include <iostream>
+#include <string>
+#include <iomanip>
+#include <fstream>
 
+#include "xml.h"
 #include "taddress.h"
 #include "tdate.h"
 #include "tperson.h"
 #include "tcustomer.h"
 
-class TEmployee: public TCustomer
+using namespace std;
+
+
+class TEmployee: public TCustomer  //, public TPerson
 {
     protected:
         string EmployeeNr;
         
     public:
         TEmployee(string, TAddress*, TDate*, string);
-        TEmployee(ifstream&);
 
         /**
          * @brief Create TEmployee by importing from XML node
-         * @param XML <Employee> node
+         * @param XML node to import
          */
         TEmployee(xmlNodePtr);
 
         ~TEmployee();
 
-        // load from file stream
-        void load(ifstream&);
+        void print();
 
         // getter and setter
         string getEmployeeNr();
         void setEmployeeNr(string);
-
-        void print();
 };
 
 #endif

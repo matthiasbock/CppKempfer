@@ -1,9 +1,18 @@
+
 #ifndef TPERSON_H
 #define TPERSON_H
+
+#include <iostream>
+#include <string>
+#include <iomanip>
+#include <fstream>
 
 #include "xml.h"
 #include "taddress.h"
 #include "tdate.h"
+
+using namespace std;
+
 
 class TPerson
 {
@@ -14,13 +23,22 @@ class TPerson
         void load(ifstream&);
         
     public:
-        TPerson(): Name(""), Address(nullptr), Birthday(nullptr) {};
-        TPerson(string, TAddress*, TDate*);
-        TPerson(ifstream&);
+        // Uebung 3: TPerson darf keinen Standardkonstruktor enthalten
+//        TPerson(): Name(""), Address(nullptr), Birthday(nullptr) {};
 
+        TPerson(string, TAddress*, TDate*);
+
+        /**
+         * @brief Create TPerson by importing from XML node
+         * @param XML node to import
+         */
         TPerson(xmlNodePtr);
 
         ~TPerson();
+
+        /*
+         * getter and setter
+         */
 
         string get_name() const;
         TAddress* get_address() const;
