@@ -11,7 +11,7 @@
 using namespace std;
 
 
-class TPrintedMedium: public TMedium
+class TPrintedMedium: virtual public TMedium
 {
   public:
     /**

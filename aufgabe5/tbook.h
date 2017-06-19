@@ -6,12 +6,12 @@
 #include <vector>
 #include "xml.h"
 
-#include "tmedium.h"
+#include "tprintedmedium.h"
 
 using namespace std;
 
 
-class TBook: public TMedium
+class TBook: virtual public TPrintedMedium
 {
   public:
     /**

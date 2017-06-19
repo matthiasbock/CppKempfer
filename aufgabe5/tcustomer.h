@@ -10,7 +10,7 @@
 using namespace std;
 
 
-class TCustomer: public TPerson
+class TCustomer: virtual public TPerson
 {
     protected:
         string CustomerNr;

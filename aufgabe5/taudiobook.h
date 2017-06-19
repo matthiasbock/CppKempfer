@@ -6,12 +6,13 @@
 #include <vector>
 #include "xml.h"
 
-#include "tmedium.h"
+#include "tbook.h"
+#include "tcd.h"
 
 using namespace std;
 
 
-class TAudioBook: public TMedium
+class TAudioBook: public TBook, public TCD
 {
   public:
     /**

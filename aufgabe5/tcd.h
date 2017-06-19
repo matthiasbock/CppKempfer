@@ -11,7 +11,7 @@
 using namespace std;
 
 
-class TCD: public TMedium
+class TCD: virtual public TMedium
 {
   public:
     /**

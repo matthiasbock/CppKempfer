@@ -3,7 +3,8 @@
 
 
 TEmployee::TEmployee(xmlNodePtr node)
-:TCustomer(node),
+:TPerson(node),
+ TCustomer(node),
  EmployeeNr("undefined")
 {
     this->EmployeeNr = xmlGetString(node, "EmployeeNr", "TEmployee");

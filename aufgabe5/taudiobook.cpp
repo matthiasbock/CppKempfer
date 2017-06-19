@@ -3,7 +3,10 @@
 
 
 TAudioBook::TAudioBook(xmlNodePtr node)
-:TMedium(node)
+:TMedium(node),
+ TPrintedMedium(node),
+ TBook(node),
+ TCD(node)
 {
     // TODO
 }

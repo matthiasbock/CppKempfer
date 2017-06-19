@@ -3,7 +3,8 @@
 
 
 TBook::TBook(xmlNodePtr node)
-:TMedium(node)
+:TMedium(node),
+ TPrintedMedium(node)
 {
     // TODO
 }
