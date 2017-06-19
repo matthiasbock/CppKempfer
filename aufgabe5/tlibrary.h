@@ -13,7 +13,12 @@ using namespace std;
 #include "tlocation.h"
 #include "taddress.h"
 #include "temployee.h"
-#include "tmedium.h"
+
+#include "tbook.h"
+#include "tmagazine.h"
+#include "tcd.h"
+#include "tdvd.h"
+#include "taudiobook.h"
 
 class TLibrary
 {

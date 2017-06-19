@@ -60,10 +60,6 @@ endif
 
 all: $(TARGET)
 
-parse3: parse3.o
-	$(CC) $(LDFLAGS) $^ -o $@
-	./$@ data.xml
-
 run: $(TARGET)
 	@./$(TARGET)
 

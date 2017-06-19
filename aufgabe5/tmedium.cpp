@@ -21,6 +21,7 @@ TMedium::TMedium(xmlNodePtr node)
     childNode = xmlGetChildByName(node, "Location");
     if (childNode != nullptr)
     {
+        cout << "Parsing location of medium..." << endl;
         Location = new TLocation(childNode);
     }
     else
@@ -30,7 +31,7 @@ TMedium::TMedium(xmlNodePtr node)
 
 TMedium::~TMedium()
 {
-    cout << "Das Medium " << Title << " mit der Signatur " << Signature << " wird vernichtet!" << endl;
+    cout << "Deconstructing TMedium \"" << Title << "\" with signature \"" << Signature << "\"..." << endl;
 }
 
 

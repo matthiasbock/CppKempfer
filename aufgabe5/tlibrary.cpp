@@ -35,12 +35,50 @@ TLibrary::TLibrary(xmlNodePtr node)
     else
         cout << "Warning: Node <Address> for TLibrary not found" << endl;
 
-    // TODO: Mediums
+    vector<xmlNodePtr> nodes;
+    MediumList.clear();
+
+    xmlGetChildrenByName(node, "Book", nodes);
+    cout << "Found " << nodes.size() << " books." << endl;
+    for (unsigned int i=0; i<nodes.size(); i++)
+    {
+        MediumList.push_back(new TBook(nodes.at(i)));
+    }
+
+    xmlGetChildrenByName(node, "Magazine", nodes);
+    cout << "Found " << nodes.size() << " magazines." << endl;
+    for (unsigned int i=0; i<nodes.size(); i++)
+    {
+        MediumList.push_back(new TMagazine(nodes.at(i)));
+    }
+
+    xmlGetChildrenByName(node, "CD", nodes);
+    cout << "Found " << nodes.size() << " CDs." << endl;
+    for (unsigned int i=0; i<nodes.size(); i++)
+    {
+        MediumList.push_back(new TCD(nodes.at(i)));
+    }
+
+    xmlGetChildrenByName(node, "DVD", nodes);
+    cout << "Found " << nodes.size() << " DVDs." << endl;
+    for (unsigned int i=0; i<nodes.size(); i++)
+    {
+        MediumList.push_back(new TDVD(nodes.at(i)));
+    }
+
+    xmlGetChildrenByName(node, "Audiobook", nodes);
+    cout << "Found " << nodes.size() << " audiobooks." << endl;
+    for (unsigned int i=0; i<nodes.size(); i++)
+    {
+        MediumList.push_back(new TAudioBook(nodes.at(i)));
+    }
 }
 
 
 TLibrary::~TLibrary()
 {
+    cout << "Deconstructing TLibrary \"" << Name << "\"..." << endl;
+
     for(unsigned i = 0; i < MediumList.size(); i++)
     {
         delete MediumList[i];
