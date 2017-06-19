@@ -5,7 +5,9 @@
 #include <iostream>
 #include <iomanip>
 #include <fstream>
+
 #include "tperson.h"
+#include "tloan.h"
 
 using namespace std;
 
