@@ -6,6 +6,7 @@
 #include <vector>
 #include "xml.h"
 
+#include "ttime.h"
 #include "tmedium.h"
 
 using namespace std;
@@ -13,6 +14,10 @@ using namespace std;
 
 class TDVD: public TMedium
 {
+  private:
+    string Actors;
+    TTime  *PlayingTime;
+
   public:
     /**
      * @brief Create DVD object by parsing from XML

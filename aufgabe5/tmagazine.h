@@ -13,6 +13,9 @@ using namespace std;
 
 class TMagazine: public TPrintedMedium
 {
+  private:
+    string Designer;
+
   public:
     /**
      * @brief Create magazine object by parsing from XML

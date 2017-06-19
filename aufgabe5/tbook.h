@@ -13,6 +13,9 @@ using namespace std;
 
 class TBook: virtual public TPrintedMedium
 {
+  private:
+    string Author;
+
   public:
     /**
      * @brief Create book object by parsing from XML

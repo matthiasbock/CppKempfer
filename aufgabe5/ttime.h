@@ -1,6 +1,9 @@
 #ifndef TTIME_H
 #define TTIME_H
 
+#include "xml.h"
+
+
 class TTime
 {
     private:
@@ -12,6 +15,13 @@ class TTime
         TTime();
         TTime(int hh, int mm);
         TTime(int hh, int mm, int ss);
+
+        /**
+         * @brief Create time object by parsing from XML
+         * @param XML node to import
+         */
+        TTime(xmlNodePtr);
+
         int get_hh() const;
         int get_mm() const;
         int get_ss() const;

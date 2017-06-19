@@ -6,7 +6,7 @@ TBook::TBook(xmlNodePtr node)
 :TMedium(node),
  TPrintedMedium(node)
 {
-    // TODO
+    Author = xmlGetString(node, "Author", "TBook");
 }
 
 

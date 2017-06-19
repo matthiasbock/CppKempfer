@@ -14,12 +14,17 @@ using namespace std;
 
 class TAudioBook: public TBook, public TCD
 {
+  protected:
+    int countCDs;
+
   public:
     /**
      * @brief Create audiobook object by parsing from XML
      * @param XML node to import
      */
     TAudioBook(xmlNodePtr);
+
+    ~TAudioBook();
 
     void print();
 };

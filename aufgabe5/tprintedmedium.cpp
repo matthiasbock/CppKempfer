@@ -5,7 +5,7 @@
 TPrintedMedium::TPrintedMedium(xmlNodePtr node)
 :TMedium(node)
 {
-    // TODO
+    Pages = xmlGetInt(node, "Pages", "TPrintedMedium");
 }
 
 

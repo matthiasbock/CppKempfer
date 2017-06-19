@@ -6,7 +6,7 @@ TMagazine::TMagazine(xmlNodePtr node)
 :TMedium(node),
  TPrintedMedium(node)
 {
-    // TODO
+    Designer = xmlGetString(node, "Designer", "TMagazine");
 }
 
 

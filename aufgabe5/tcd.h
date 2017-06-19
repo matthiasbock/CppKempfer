@@ -13,6 +13,10 @@ using namespace std;
 
 class TCD: virtual public TMedium
 {
+  private:
+    string Interpret;
+    int Tracks;
+
   public:
     /**
      * @brief Create CD object by parsing from XML

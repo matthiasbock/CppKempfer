@@ -5,7 +5,8 @@
 TCD::TCD (xmlNodePtr node)
 :TMedium(node)
 {
-    // TODO
+    Interpret = xmlGetString(node, "Interpret", "TCD");
+    Tracks = xmlGetInt(node, "Tracks", "TCD");
 }
 
 

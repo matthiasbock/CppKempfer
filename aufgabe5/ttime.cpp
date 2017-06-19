@@ -31,6 +31,15 @@ TTime::TTime(int hh, int mm, int ss)
     this->ss = ss;
 }
 
+
+TTime::TTime(xmlNodePtr node)
+{
+    hh = xmlGetInt(node, "Hour", "TTime");
+    mm = xmlGetInt(node, "Minute", "TTime");
+    ss = xmlGetInt(node, "Second", "TTime");
+}
+
+
 int TTime::get_hh() const
 {
     return hh;

@@ -13,6 +13,9 @@ using namespace std;
 
 class TPrintedMedium: virtual public TMedium
 {
+  private:
+    int Pages;
+
   public:
     /**
      * @brief Create printed medium object by parsing from XML

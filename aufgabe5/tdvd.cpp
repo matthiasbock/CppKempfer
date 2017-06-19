@@ -5,7 +5,19 @@
 TDVD::TDVD (xmlNodePtr node)
 :TMedium(node)
 {
-    // TODO
+    xmlNodePtr childNode;
+
+    Actors = xmlGetString(node, "Actors", "TDVD");
+
+    childNode = xmlGetChildByName(node, "PlayingTime");
+    if (childNode != nullptr)
+    {
+        cout << "TDVD.PlayingTime =" << endl;
+        PlayingTime = new TTime(childNode);
+    }
+    else
+        cout << "Warning: Child node <PlayingTime> for TDVD not found." << endl;
+
 }
 
 
