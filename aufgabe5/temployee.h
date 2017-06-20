@@ -24,7 +24,7 @@
 using namespace std;
 
 
-class TEmployee: public TCustomer  //, public TPerson
+class TEmployee: public TCustomer, virtual public TPerson
 {
     protected:
         string EmployeeNr;

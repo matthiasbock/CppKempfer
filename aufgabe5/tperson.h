@@ -20,7 +20,6 @@ class TPerson
         string Name;
         TAddress *Address;
         TDate *Birthday;
-        void load(ifstream&);
         
     public:
         // Uebung 3: TPerson darf keinen Standardkonstruktor enthalten
@@ -34,7 +33,7 @@ class TPerson
          */
         TPerson(xmlNodePtr);
 
-        ~TPerson();
+        virtual ~TPerson();
 
         void print();
 

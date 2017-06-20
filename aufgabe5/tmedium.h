@@ -29,7 +29,8 @@ class TMedium
         TMedium();
         TMedium(string, string, TLocation*, int, Status);
         TMedium(xmlNodePtr);
-        ~TMedium();
+
+        virtual ~TMedium();
 
         void print();
         

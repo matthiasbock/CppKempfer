@@ -23,6 +23,8 @@ class TBook: virtual public TPrintedMedium
      */
     TBook(xmlNodePtr);
 
+    virtual ~TBook();
+
     void print();
 };
 

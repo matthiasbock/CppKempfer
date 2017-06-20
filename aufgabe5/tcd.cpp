@@ -14,3 +14,9 @@ void TCD::print()
 {
     cout << "Medientyp: CD-ROM" << endl;
 }
+
+
+TCD::~TCD()
+{
+    cout << "Deconstructing TCD \"" << get_title() << "\"..." << endl;
+}

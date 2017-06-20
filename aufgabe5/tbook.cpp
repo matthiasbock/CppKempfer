@@ -10,6 +10,12 @@ TBook::TBook(xmlNodePtr node)
 }
 
 
+TBook::~TBook()
+{
+    cout << "Deconstructing TBook \"" << get_title() << "\"..." << endl;
+}
+
+
 void TBook::print()
 {
     cout << "Medientyp: Buch" << endl;

@@ -3,6 +3,7 @@
 #
 CC := gcc
 CPP := g++
+GDB = gdb
 RM = rm
 
 #
@@ -62,6 +63,9 @@ all: $(TARGET)
 
 run: $(TARGET)
 	@./$(TARGET)
+
+debug: $(TARGET)
+	$(GDB) $^ -ex="r"
 
 $(TARGET): Makefile $(CPP_SRC) $(HEADERS) $(OBJS)
 	@rm -f $@

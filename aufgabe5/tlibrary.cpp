@@ -81,7 +81,7 @@ TLibrary::~TLibrary()
 
     for(unsigned i = 0; i < MediumList.size(); i++)
     {
-        delete MediumList[i];
+        delete MediumList.at(i);
     }
     delete Address;
     delete Manager;

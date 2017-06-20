@@ -24,6 +24,8 @@ class TCD: virtual public TMedium
      */
     TCD(xmlNodePtr);
 
+    virtual ~TCD();
+
     void print();
 };
 

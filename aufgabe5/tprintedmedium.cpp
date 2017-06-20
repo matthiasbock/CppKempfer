@@ -14,3 +14,8 @@ void TPrintedMedium::print()
     cout << "Medientyp: Magazin" << endl;
 }
 
+
+TPrintedMedium::~TPrintedMedium ()
+{
+    cout << "Deconstructing TPrintedMedium \"" << get_title() << "\"..." << endl;
+}

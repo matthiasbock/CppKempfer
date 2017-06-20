@@ -24,7 +24,7 @@ class TCustomer: virtual public TPerson
          */
         TCustomer(xmlNodePtr);
 
-        ~TCustomer();
+        virtual ~TCustomer();
 
         /**
          * @brief Print summary about customer
