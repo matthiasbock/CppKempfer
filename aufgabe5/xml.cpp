@@ -83,6 +83,12 @@ void xmlGetChildrenByName(xmlNodePtr node, const char* name, vector<xmlNodePtr>&
 }
 
 
+bool xmlHasChild(xmlNodePtr node, const char* name)
+{
+    return xmlGetChildByName(node, name) != nullptr;
+}
+
+
 string xmlGetString(xmlNodePtr parent, const char *childName, string targetClass)
 {
     xmlNodePtr childNode = xmlGetChildByName(parent, childName);

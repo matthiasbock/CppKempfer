@@ -49,7 +49,15 @@ xmlNodePtr xmlGetChildByName(xmlNodePtr, const char*);
  * @param Requested XML node name
  * @param Reference to vector to modify
  */
-void xmlGetChildrenByName(xmlNodePtr node, const char* name, vector<xmlNodePtr>& nodes);
+void xmlGetChildrenByName(xmlNodePtr, const char*, vector<xmlNodePtr>&);
+
+
+/**
+ * @brief Answears, whether a child node with the given name exists
+ * @param Parent node
+ * @param Name of the child node
+ */
+bool xmlHasChild(xmlNodePtr, const char*);
 
 
 /**

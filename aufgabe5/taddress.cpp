@@ -15,7 +15,12 @@ TAddress::TAddress(string Street, string Number, string Zipcode, string Town)
 TAddress::TAddress(xmlNodePtr node)
 {
     Street = xmlGetString(node, "Street", "TAddress");
-    Number = xmlGetString(node, "HouseNr", "TAddress");
+
+    if (xmlHasChild(node, "HouseNr"))
+        Number = xmlGetString(node, "HouseNr", "TAddress");
+    else
+        Number = xmlGetString(node, "Number", "TAddress");
+
     Zipcode = xmlGetString(node, "Zipcode", "TAddress");
     Town = xmlGetString(node, "Town", "TAddress");
 }

@@ -13,7 +13,7 @@ TMedium::TMedium(string Name, string Signature, TLocation* Location, int FSK, St
 TMedium::TMedium(xmlNodePtr node)
 {
     Title = xmlGetString(node, "Title", "TMedium");
-    Signature = xmlGetString(node, "Signature", "TMedium");
+    Signature = xmlGetString(node, "Signatur", "TMedium");
     FSK = xmlGetInt(node, "FSK", "TMedium");
     set_status( xmlGetInt(node, "Status", "TMedium") );
 
