@@ -21,6 +21,8 @@ void TLibraryPool::loadFromFile(string filename)
     loadFromXML(xmlDocGetRootElement(xml));
 
     cout << "Import completed." << endl << endl;
+
+    cout << ANSI_PINK "##########################################################################################" ANSI_RESET << endl;
 }
 
 
@@ -115,6 +117,8 @@ void TLibraryPool::print()
         CustomerList.at(j)->print();
     }
     cout << endl;
+
+    cout << ANSI_PINK "##########################################################################################" ANSI_RESET << endl;
 }
 
 
