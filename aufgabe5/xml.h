@@ -13,6 +13,9 @@
 
 using namespace std;
 
+#define ANSI_YELLOW "\x1b[1;33m"
+#define ANSI_RESET  "\x1b[0m"
+
 
 /**
  * @brief Extract content of an XML node,\

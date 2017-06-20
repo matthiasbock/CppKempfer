@@ -93,7 +93,7 @@ string xmlGetString(xmlNodePtr parent, const char *childName, string targetClass
         return s;
     }
     else
-        cout << "Warning: Child node <" << childName << "> for " << targetClass << " not found." << endl;
+        cout << ANSI_YELLOW "Warning: " ANSI_RESET "Child node <" << childName << "> for " << targetClass << " not found." << endl;
     return "";
 }
 
