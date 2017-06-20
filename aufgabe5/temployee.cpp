@@ -19,6 +19,8 @@ TEmployee::~TEmployee()
 
 void TEmployee::print()
 {
+    TCustomer::print();
+
     cout << "Angestelltennummer: " << EmployeeNr << endl;
 }
 

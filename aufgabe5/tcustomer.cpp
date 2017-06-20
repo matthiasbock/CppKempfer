@@ -19,7 +19,7 @@ TCustomer::~TCustomer()
 
 void TCustomer::print()
 {
-	((TPerson*) this)->print();
+    TPerson::print();
 
-	cout << "Kundennummer: " << this->CustomerNr << endl;
+    cout << "Kundennummer: " << this->CustomerNr << endl;
 }

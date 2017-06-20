@@ -29,7 +29,7 @@ class TCustomer: virtual public TPerson
         /**
          * @brief Print summary about customer
          */
-        void print();
+        virtual void print();
 
         string get_customerNr() const;
         void set_customerNr(string);

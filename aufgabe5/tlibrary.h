@@ -24,8 +24,8 @@ class TLibrary
 {
     private:
         string Name;
-        TAddress* Address;
-        TPerson* Manager;
+        TAddress *Address;
+        TPerson *Manager;
         vector<TMedium*> MediumList;
 
     public:

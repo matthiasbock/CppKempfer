@@ -35,7 +35,7 @@ class TPerson
 
         virtual ~TPerson();
 
-        void print();
+        virtual void print();
 
         /*
          * getter and setter
