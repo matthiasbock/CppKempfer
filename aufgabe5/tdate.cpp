@@ -32,5 +32,5 @@ TDate::TDate(xmlNodePtr node)
 void TDate::print()
 {
     cout.fill('0');
-    cout << setw(2) << day << '.' << setw(2) << month << '.' << year;
+    cout << setw(2) << right << day << '.' << setw(2) << right << month << '.' << year;
 }
