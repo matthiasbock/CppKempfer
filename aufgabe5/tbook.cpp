@@ -6,6 +6,15 @@ TBook::TBook(xmlNodePtr node)
 :TMedium(node),
  TPrintedMedium(node)
 {
+    load(node);
+}
+
+
+void TBook::load(xmlNodePtr node)
+{
+    if (node == nullptr)
+        return;
+
     Author = xmlGetString(node, "Author", "TBook");
 }
 

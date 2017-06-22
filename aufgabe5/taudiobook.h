@@ -24,6 +24,8 @@ class TAudioBook: public TBook, public TCD
      */
     TAudioBook(xmlNodePtr);
 
+    void load(xmlNodePtr);
+
     ~TAudioBook();
 
     void print();

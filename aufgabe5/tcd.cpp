@@ -5,18 +5,27 @@
 TCD::TCD (xmlNodePtr node)
 :TMedium(node)
 {
-    Interpret = xmlGetString(node, "Interpret", "TCD");
-    Tracks = xmlGetInt(node, "Tracks", "TCD");
+    load(node);
 }
 
 
-void TCD::print()
+void TCD::load(xmlNodePtr node)
 {
-    cout << "Medientyp: CD-ROM" << endl;
+    if (node == nullptr)
+        return;
+
+    Interpret = xmlGetString(node, "Interpret", "TCD");
+    Tracks = xmlGetInt(node, "Tracks", "TCD");
 }
 
 
 TCD::~TCD()
 {
     cout << "Deconstructing TCD \"" << get_title() << "\"..." << endl;
+}
+
+
+void TCD::print()
+{
+    cout << "Medientyp: CD-ROM" << endl;
 }

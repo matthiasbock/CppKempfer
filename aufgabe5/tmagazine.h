@@ -23,6 +23,8 @@ class TMagazine: public TPrintedMedium
      */
     TMagazine(xmlNodePtr);
 
+    ~TMagazine();
+
     void print();
 };
 

@@ -7,7 +7,16 @@ TCustomer::TCustomer(xmlNodePtr node)
 :TPerson(node),
  CustomerNr("undefined")
 {
-    this->CustomerNr = xmlGetString(node, "CustomerNr", "TCustomer");
+    load(node);
+}
+
+
+void TCustomer::load(xmlNodePtr node)
+{
+    if (node == nullptr)
+        return;
+
+    CustomerNr = xmlGetString(node, "CustomerNr", "TCustomer");
 }
 
 

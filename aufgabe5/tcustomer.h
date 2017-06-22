@@ -24,6 +24,8 @@ class TCustomer: virtual public TPerson
          */
         TCustomer(xmlNodePtr);
 
+        void load(xmlNodePtr);
+
         virtual ~TCustomer();
 
         /**

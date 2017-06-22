@@ -8,13 +8,22 @@ TAudioBook::TAudioBook(xmlNodePtr node)
  TBook(node),
  TCD(node)
 {
+    load(node);
+}
+
+
+void TAudioBook::load(xmlNodePtr node)
+{
+    if (node == nullptr)
+        return;
+
     countCDs = xmlGetInt(node, "countCDs", "TAudioBook");
 }
 
 
 TAudioBook::~TAudioBook()
 {
-    cout << "Deconstructing audiobook \"" << get_title() << "\"..." << endl;
+    cout << "Deconstructing TAudioBook \"" << get_title() << "\"..." << endl;
 }
 
 

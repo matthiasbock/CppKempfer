@@ -37,6 +37,8 @@ class TDate
          */
         TDate(xmlNodePtr);
 
+        void load(xmlNodePtr);
+
         void print();
 
         //int get_dd() const;

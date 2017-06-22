@@ -7,7 +7,16 @@ TEmployee::TEmployee(xmlNodePtr node)
  TCustomer(node),
  EmployeeNr("undefined")
 {
-    this->EmployeeNr = xmlGetString(node, "EmployeeNr", "TEmployee");
+    load(node);
+}
+
+
+void TEmployee::load(xmlNodePtr node)
+{
+    if (node == nullptr)
+        return;
+
+    EmployeeNr = xmlGetString(node, "EmployeeNr", "TEmployee");
 }
 
 

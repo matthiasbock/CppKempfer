@@ -10,7 +10,15 @@ TMagazine::TMagazine(xmlNodePtr node)
 }
 
 
+TMagazine::~TMagazine()
+{
+    cout << "Destructing TMagazine \"" << get_title() << "\"..." << endl;
+}
+
+
 void TMagazine::print()
 {
     cout << "Medientyp: Magazin" << endl;
+
+    TPrintedMedium::print();
 }

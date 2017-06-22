@@ -23,6 +23,15 @@ TDate::TDate(int dd, int mm, int yyyy)
 
 TDate::TDate(xmlNodePtr node)
 {
+    load(node);
+}
+
+
+void TDate::load(xmlNodePtr node)
+{
+    if (node == nullptr)
+        return;
+
     day = xmlGetInt(node, "Day", "TDate");
     month = xmlGetInt(node, "Month", "TDate");
     year = xmlGetInt(node, "Year", "TDate");

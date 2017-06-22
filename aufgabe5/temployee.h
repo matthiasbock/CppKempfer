@@ -38,6 +38,8 @@ class TEmployee: public TCustomer, virtual public TPerson
          */
         TEmployee(xmlNodePtr);
 
+        void load(xmlNodePtr);
+
         ~TEmployee();
 
         void print();

@@ -5,6 +5,15 @@
 TDVD::TDVD (xmlNodePtr node)
 :TMedium(node)
 {
+    load(node);
+}
+
+
+void TDVD::load(xmlNodePtr node)
+{
+    if (node == nullptr)
+        return;
+
     xmlNodePtr childNode;
 
     Actors = xmlGetString(node, "Actors", "TDVD");
@@ -21,7 +30,15 @@ TDVD::TDVD (xmlNodePtr node)
 }
 
 
+TDVD::~TDVD()
+{
+    cout << "Deconstructing TDVD \"" << get_title() << "\"..." << endl;
+}
+
+
 void TDVD::print()
 {
     cout << "Medientyp: DVD" << endl;
+
+    TMedium::print();
 }

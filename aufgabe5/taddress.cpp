@@ -14,6 +14,13 @@ TAddress::TAddress(string Street, string Number, string Zipcode, string Town)
 
 TAddress::TAddress(xmlNodePtr node)
 {
+    if (node != nullptr)
+        load(node);
+}
+
+
+void TAddress::load(xmlNodePtr node)
+{
     Street = xmlGetString(node, "Street", "TAddress");
 
     if (xmlHasChild(node, "HouseNr"))
@@ -23,6 +30,12 @@ TAddress::TAddress(xmlNodePtr node)
 
     Zipcode = xmlGetString(node, "Zipcode", "TAddress");
     Town = xmlGetString(node, "Town", "TAddress");
+}
+
+
+TAddress::~TAddress()
+{
+    cout << "Deconstructing TAddress \"" << Street << " " << Number << "\"..." << endl;
 }
 
 

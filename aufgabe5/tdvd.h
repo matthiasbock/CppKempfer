@@ -25,6 +25,10 @@ class TDVD: public TMedium
      */
     TDVD(xmlNodePtr);
 
+    void load(xmlNodePtr);
+
+    ~TDVD();
+
     void print();
 };
 

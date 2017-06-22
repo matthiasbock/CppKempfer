@@ -19,7 +19,13 @@ class TAddress
 
     public:
         TAddress(string, string, string, string);
+
         TAddress(xmlNodePtr);
+        void load(xmlNodePtr);
+
+        ~TAddress();
+
+        void print();
 
         string get_street() const;
         string get_number() const;
@@ -29,7 +35,6 @@ class TAddress
         void set_number(string);
         void set_zipcode(string);
         void set_town(string);
-        void print();
 };
 
 #endif
