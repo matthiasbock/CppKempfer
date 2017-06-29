@@ -16,6 +16,7 @@ class TAudioBook: public TBook, public TCD
 {
   protected:
     int countCDs;
+    bool print_parents = true;
 
   public:
     /**
@@ -28,7 +29,12 @@ class TAudioBook: public TBook, public TCD
 
     ~TAudioBook();
 
-    void print(bool print_parents = true);
+    /**
+     * @brief Grant output stream operator access to private class members
+     */
+    friend ostream& operator<<(ostream&, TAudioBook&);
+
+    void print();
 };
 
 #endif

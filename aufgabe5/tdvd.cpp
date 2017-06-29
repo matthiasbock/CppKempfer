@@ -41,20 +41,28 @@ TDVD::~TDVD()
 }
 
 
-void TDVD::print(bool print_parents)
+/**
+ * @brief Operator overloading for cout output
+ */
+ostream& operator<<(ostream& out, TDVD& dvd)
 {
-    cout << "Medientyp: DVD" << endl;
+    out << "Medientyp: DVD" << endl;
 
-    if (PlayingTime != nullptr)
+    if (dvd.PlayingTime != nullptr)
     {
-        cout << "Dauer:    ";
-        PlayingTime->print();
-        cout << endl;
+        out << "Dauer:    " << dvd.PlayingTime << endl;
     }
 
-
-    if (print_parents)
+    if (dvd.print_parents)
     {
-        TMedium::print();
+        out << (TMedium&) dvd;
     }
+
+    return out;
+}
+
+
+void TDVD::print()
+{
+    cout << *this;
 }

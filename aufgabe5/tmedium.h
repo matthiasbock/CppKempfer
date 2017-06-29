@@ -48,7 +48,6 @@ class TMedium
         void set_location(TLocation*);
 
         friend ostream& operator<<(ostream&, TMedium&);
-
 };
 
 #endif

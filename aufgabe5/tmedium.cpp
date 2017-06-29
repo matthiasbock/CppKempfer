@@ -52,6 +52,7 @@ ostream& operator<<(ostream& out, TMedium& tmedium)
     out << setw(10) << left << "Ort:"; tmedium.Location->print(); out << endl;
     out << setw(10) << left << "FSK:" << "freigegeben ab " << tmedium.get_FSK() << " Jahren" << endl;
     out << setw(10) << left << "Status: " << tmedium.get_status() << endl;
+    return out;
 }
 
 void TMedium::set_status(int statusInt)

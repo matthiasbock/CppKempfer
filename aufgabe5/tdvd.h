@@ -17,6 +17,7 @@ class TDVD: public TMedium
   private:
     string Actors;
     TTime  *PlayingTime;
+    bool   print_parents = true;
 
   public:
     /**
@@ -29,7 +30,12 @@ class TDVD: public TMedium
 
     ~TDVD();
 
-    void print(bool print_parents = true);
+    /**
+     * @brief Grant output stream operator access to private class members
+     */
+    friend ostream& operator<<(ostream&, TDVD&);
+
+    void print();
 };
 
 #endif

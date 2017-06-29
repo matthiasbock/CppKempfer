@@ -40,6 +40,8 @@ ostream& operator<<(ostream& out, TLibraryPool& librarypool)
     out << endl;
 
     out << ANSI_PINK "##########################################################################################" ANSI_RESET << endl;
+
+    return out;
 }
 
 

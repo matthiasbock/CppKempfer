@@ -25,12 +25,23 @@ TCD::~TCD()
 }
 
 
-void TCD::print(bool print_parents)
+/**
+ * @brief Operator overloading for cout output
+ */
+ostream& operator<<(ostream& out, TCD& cd)
 {
-    cout << "Medientyp: CD-ROM" << endl;
+    out << "Medientyp: CD-ROM" << endl;
 
-    if (print_parents)
+    if (cd.print_parents)
     {
-        TMedium::print();
+        out << (TMedium&) cd;
     }
+
+    return out;
+}
+
+
+void TCD::print()
+{
+    cout << *this;
 }

@@ -27,13 +27,26 @@ TAudioBook::~TAudioBook()
 }
 
 
-void TAudioBook::print(bool print_parents)
+/**
+ * @brief Operator overloading for cout output
+ */
+ostream& operator<<(ostream& out, TAudioBook& ab)
 {
-    cout << "Medientyp: Hoerbuch" << endl;
+    out << "Medientyp: Hoerbuch" << endl;
 
-    if (print_parents)
+    if (ab.print_parents)
     {
-        TCD::print(false);
-        TBook::print();
+        ((TCD&) ab).print_parents = false;
+        out << (TCD&) ab;
+        ((TBook&) ab).print_parents = true;
+        out << (TBook&) ab;
     }
+
+    return out;
+}
+
+
+void TAudioBook::print()
+{
+    cout << *this;
 }

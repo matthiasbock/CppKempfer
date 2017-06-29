@@ -25,12 +25,23 @@ TBook::~TBook()
 }
 
 
-void TBook::print(bool print_parents)
+/**
+ * @brief Operator overloading for cout output
+ */
+ostream& operator<<(ostream& out, TBook& book)
 {
-    cout << "Medientyp: Buch" << endl;
+    out << "Medientyp: Buch" << endl;
 
-    if (print_parents)
+    if (book.print_parents)
     {
-        TMedium::print();
+        out << (TMedium&) book;
     }
+
+    return out;
+}
+
+
+void TBook::print()
+{
+    cout << *this;
 }

@@ -17,6 +17,8 @@ class TBook: virtual public TPrintedMedium
     string Author;
 
   public:
+    bool print_parents = true;
+
     /**
      * @brief Create book object by parsing from XML
      * @param XML node to import
@@ -27,7 +29,12 @@ class TBook: virtual public TPrintedMedium
 
     ~TBook();
 
-    void print(bool print_parents = true);
+    /**
+     * @brief Grant output stream operator access to private class members
+     */
+    friend ostream& operator<<(ostream&, TBook&);
+
+    void print();
 };
 
 #endif
