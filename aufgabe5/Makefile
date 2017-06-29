@@ -11,8 +11,8 @@ RM = rm
 # Paths, where compiler and linker can find all the stuff
 #
 LDFLAGS += -L/lib/x86_64-linux-gnu
-#LDFLAGS += -L/usr/lib/x86_64-linux-gnu
-#LDFLAGS += -L/usr/lib/gcc/x86_64-linux-gnu/6
+LDFLAGS += -L/usr/lib/x86_64-linux-gnu
+LDFLAGS += -L/usr/lib/gcc/x86_64-linux-gnu/6
 
 INCLUDE += -I/usr/include
 INCLUDE += -I/usr/local/include
@@ -26,8 +26,8 @@ INCLUDE += -I/usr/local/include
 #
 CFLAGS += -g -Wall
 CPPFLAGS += -g -Wall -std=c++11
-LDFLAGS += -lstdc++ -ldl -lz -lm
-#-lxml2
+LDFLAGS += -Wl,--start-group -Wl,-lstdc++ -Wl,-ldl -Wl,-lz -Wl,-lm
+#-Wl,-lxml2
 
 #
 # Source files
