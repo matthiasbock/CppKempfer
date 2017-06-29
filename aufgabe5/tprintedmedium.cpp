@@ -8,15 +8,19 @@ TPrintedMedium::TPrintedMedium(xmlNodePtr node)
     Pages = xmlGetInt(node, "Pages", "TPrintedMedium");
 }
 
-
-void TPrintedMedium::print(bool print_parents)
+void TPrintedMedium::print()
 {
-    cout << "Medientyp: Gedrucktes Medium" << endl;
 
-    if (print_parents)
+}
+
+ostream& operator<<(ostream& out, TPrintedMedium& tprintedmedium)
+{
+    out << "Medientyp: Gedrucktes Medium" << endl;
+    if (tprintedmedium.print_parents)
     {
-        TMedium::print();
+        out << (TMedium&) tprintedmedium;
     }
+    return out;
 }
 
 

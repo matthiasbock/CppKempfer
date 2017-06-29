@@ -15,7 +15,7 @@ class TPrintedMedium: virtual public TMedium
 {
   private:
     int Pages;
-
+    bool print_parents = true;
   public:
     /**
      * @brief Create printed medium object by parsing from XML
@@ -24,8 +24,9 @@ class TPrintedMedium: virtual public TMedium
     TPrintedMedium(xmlNodePtr);
 
     ~TPrintedMedium();
+    friend ostream& operator<<(ostream&, TPrintedMedium&);
 
-    void print(bool print_parents = true);
+    void print();
 };
 
 #endif
