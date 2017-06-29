@@ -28,4 +28,6 @@ TBook::~TBook()
 void TBook::print()
 {
     cout << "Medientyp: Buch" << endl;
+
+    TMedium::print();
 }

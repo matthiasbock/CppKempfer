@@ -43,7 +43,7 @@ void TMedium::print()
     cout << setw(10) << left << "Signatur: " << get_signature() << endl;
     cout << setw(10) << left << "Ort:"; Location->print(); cout << endl;
     cout << setw(10) << left << "FSK:" << "freigegeben ab " << get_FSK() << " Jahren" << endl;
-    cout << setw(10) << left << "Status: " << get_status();
+    cout << setw(10) << left << "Status: " << get_status() << endl;
 }
 
 

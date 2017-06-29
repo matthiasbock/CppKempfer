@@ -25,7 +25,12 @@ TCD::~TCD()
 }
 
 
-void TCD::print()
+void TCD::print(bool print_parents)
 {
     cout << "Medientyp: CD-ROM" << endl;
+
+    if (print_parents)
+    {
+        TMedium::print();
+    }
 }

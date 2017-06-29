@@ -11,7 +11,7 @@ TPrintedMedium::TPrintedMedium(xmlNodePtr node)
 
 void TPrintedMedium::print()
 {
-    cout << "Medientyp: Drucksache" << endl;
+    cout << "Medientyp: Gedrucktes Medium" << endl;
 
     TMedium::print();
 }

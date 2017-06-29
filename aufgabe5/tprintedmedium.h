@@ -23,7 +23,7 @@ class TPrintedMedium: virtual public TMedium
      */
     TPrintedMedium(xmlNodePtr);
 
-    virtual ~TPrintedMedium();
+    ~TPrintedMedium();
 
     void print();
 };

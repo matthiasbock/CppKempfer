@@ -40,6 +40,7 @@ TARGET := ueb05
 #
 # libxml2
 #
+LIBXML2_SYSLIB = /usr/lib/x86_64-linux-gnu/libxml2.so
 LIBXML2_PATH = ../libxml2
 LIBXML2_AC_CONFIG = $(LIBXML2_PATH)/libxml2-config.cmake
 LIBXML2_LIB = $(LIBXML2_PATH)/.libs/libxml2.a

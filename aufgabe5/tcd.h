@@ -28,7 +28,7 @@ class TCD: virtual public TMedium
 
     virtual ~TCD();
 
-    void print();
+    void print(bool print_parents = true);
 };
 
 #endif
