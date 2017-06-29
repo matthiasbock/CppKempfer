@@ -35,17 +35,24 @@ TMedium::~TMedium()
 }
 
 
-void TMedium::print(bool)
+void TMedium::print()
 {
-    //char tmp = cout.fill();
-    cout.fill(' ');
-    cout << setw(10) << left << "Titel: "<< get_title() << endl;
-    cout << setw(10) << left << "Signatur: " << get_signature() << endl;
-    cout << setw(10) << left << "Ort:"; Location->print(); cout << endl;
-    cout << setw(10) << left << "FSK:" << "freigegeben ab " << get_FSK() << " Jahren" << endl;
-    cout << setw(10) << left << "Status: " << get_status() << endl;
+   cout << *this;
 }
 
+/**
+ * @brief Operator overloading for cout output
+ */
+ostream& operator<<(ostream& out, TMedium& tmedium)
+{
+ //char tmp = cout.fill();
+    out.fill(' ');
+    out << setw(10) << left << "Titel: "<< tmedium.get_title() << endl;
+    out << setw(10) << left << "Signatur: " << tmedium.get_signature() << endl;
+    out << setw(10) << left << "Ort:"; tmedium.Location->print(); out << endl;
+    out << setw(10) << left << "FSK:" << "freigegeben ab " << tmedium.get_FSK() << " Jahren" << endl;
+    out << setw(10) << left << "Status: " << tmedium.get_status() << endl;
+}
 
 void TMedium::set_status(int statusInt)
 {

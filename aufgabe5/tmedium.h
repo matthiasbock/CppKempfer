@@ -24,6 +24,7 @@ class TMedium
         int FSK;
         Status status;
         void load(ifstream&);
+        bool print_parents = true;
         
     public:
         TMedium();
@@ -32,7 +33,7 @@ class TMedium
 
         virtual ~TMedium();
 
-        virtual void print(bool print_parents = true);
+        virtual void print();
         
         string get_status() const;
         string get_title() const;
@@ -45,6 +46,8 @@ class TMedium
         void set_signature(string);
         void set_FSK(int);
         void set_location(TLocation*);
+
+        friend ostream& operator<<(ostream&, TMedium&);
 
 };
 
