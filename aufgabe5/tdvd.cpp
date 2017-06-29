@@ -23,6 +23,8 @@ void TDVD::load(xmlNodePtr node)
     {
         cout << "TDVD.PlayingTime =" << endl;
         PlayingTime = new TTime(childNode);
+        PlayingTime->print();
+        cout << endl;
     }
     else
         cout << "Warning: Child node <PlayingTime> for TDVD not found." << endl;
@@ -42,6 +44,14 @@ TDVD::~TDVD()
 void TDVD::print(bool print_parents)
 {
     cout << "Medientyp: DVD" << endl;
+
+    if (PlayingTime != nullptr)
+    {
+        cout << "Dauer:    ";
+        PlayingTime->print();
+        cout << endl;
+    }
+
 
     if (print_parents)
     {
