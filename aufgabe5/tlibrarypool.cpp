@@ -13,6 +13,36 @@ TLibraryPool::TLibraryPool(string filename)
 }
 
 
+/**
+ * @brief Operator overloading for cout output
+ */
+ostream& operator<<(ostream& out, TLibraryPool& librarypool)
+{
+    out << endl;
+    out << librarypool.get_name() << endl;
+    out << "Leitung: ";
+    librarypool.Chairman->print();
+    out << endl;
+    out << "\nZum Buecherverband gehoeren " << librarypool.LibraryList.size() << " Filialen" << endl;
+    for(unsigned i = 0; i < librarypool.LibraryList.size(); i++)
+    {
+        out << endl;
+        librarypool.LibraryList.at(i)->print();
+        out << endl;
+    }
+    out << endl;
+    out << "Der Buecherverband hat " << librarypool.CustomerList.size() << " Kunde/Kunden" << endl;
+    for(unsigned j = 0; j < librarypool.CustomerList.size(); j++)
+    {
+        out << endl;
+        librarypool.CustomerList.at(j)->print();
+    }
+    out << endl;
+
+    out << ANSI_PINK "##########################################################################################" ANSI_RESET << endl;
+}
+
+
 void TLibraryPool::loadFromFile(string filename)
 {
     cout << "Importing library pool from \"" << filename << "\"..." << endl;
@@ -97,28 +127,7 @@ void TLibraryPool::add(TLibrary* lib)
 
 void TLibraryPool::print()
 {
-    cout << endl;
-    cout << get_name() << endl;
-    cout << "Leitung: ";
-    Chairman->print();
-    cout << endl;
-    cout << "\nZum Buecherverband gehoeren " << LibraryList.size() << " Filialen" << endl;
-    for(unsigned i = 0; i < LibraryList.size(); i++)
-    {
-        cout << endl;
-        LibraryList.at(i)->print();
-        cout << endl;
-    }
-    cout << endl;
-    cout << "Der Buecherverband hat " << CustomerList.size() << " Kunde/Kunden" << endl;
-    for(unsigned j = 0; j < CustomerList.size(); j++)
-    {
-        cout << endl;
-        CustomerList.at(j)->print();
-    }
-    cout << endl;
-
-    cout << ANSI_PINK "##########################################################################################" ANSI_RESET << endl;
+    cout << *this;
 }
 
 

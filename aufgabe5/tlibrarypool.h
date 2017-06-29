@@ -74,6 +74,11 @@ class TLibraryPool
         void add(TCustomer*);
 
         /**
+         * @brief Grant output stream operator access to private class members
+         */
+        friend ostream& operator<<(ostream&, TLibraryPool&);
+
+        /**
          * @brief Print a summary about this library pool
          */
         void print();
