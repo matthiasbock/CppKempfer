@@ -15,6 +15,7 @@ TTime::TTime()
     hh = ltm->tm_hour;
     mm = ltm->tm_min;
     ss = ltm->tm_sec;
+    has_second = true;
 }
 
 TTime::TTime(int hh, int mm)
@@ -22,6 +23,7 @@ TTime::TTime(int hh, int mm)
     this->hh = hh;
     this->mm = mm;
     ss = 0;
+    has_second = false;
 }
 
 TTime::TTime(int hh, int mm, int ss)
@@ -29,6 +31,7 @@ TTime::TTime(int hh, int mm, int ss)
     this->hh = hh;
     this->mm = mm;
     this->ss = ss;
+    has_second = true;
 }
 
 
@@ -36,7 +39,17 @@ TTime::TTime(xmlNodePtr node)
 {
     hh = xmlGetInt(node, "Hour", "TTime");
     mm = xmlGetInt(node, "Minute", "TTime");
+
+    has_second = true;
     ss = xmlGetInt(node, "Second", "TTime");
+    if (ss < 0 || ss > 59)
+        has_second = false;
+}
+
+
+TTime::~TTime()
+{
+    cout << "Destructing TTime..." << endl;
 }
 
 
@@ -74,5 +87,9 @@ void TTime::set_ss(int ss)
 void TTime::print()
 {
     cout << setfill('0');
-    cout << setw(2) << hh << ':' << setw(2) << mm << ':' << setw(2) << ss;
+    cout << setw(2) << hh << ':' << setw(2) << mm;
+    if (has_second)
+    {
+        cout << ':' << setw(2) << ss;
+    }
 }

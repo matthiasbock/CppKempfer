@@ -8,6 +8,7 @@ class TTime
 {
     private:
         int hh, mm, ss;
+        bool has_second = false;
         time_t now;
         string myTime;
         
@@ -21,6 +22,8 @@ class TTime
          * @param XML node to import
          */
         TTime(xmlNodePtr);
+
+        ~TTime();
 
         int get_hh() const;
         int get_mm() const;
