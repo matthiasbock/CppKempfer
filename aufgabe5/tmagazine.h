@@ -15,17 +15,18 @@ class TMagazine: public TPrintedMedium
 {
   private:
     string Designer;
-
+    bool print_parents = true;
   public:
     /**
      * @brief Create magazine object by parsing from XML
      * @param XML node to import
      */
     TMagazine(xmlNodePtr);
+    friend ostream& operator<<(ostream&, TMagazine&);
 
     ~TMagazine();
 
-    void print(bool print_parents = true);
+    void print();
 };
 
 #endif

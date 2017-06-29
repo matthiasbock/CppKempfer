@@ -15,13 +15,18 @@ TMagazine::~TMagazine()
     cout << "Destructing TMagazine \"" << get_title() << "\"..." << endl;
 }
 
-
-void TMagazine::print(bool print_parents)
+ostream& operator<<(ostream& out, TMagazine& tmagazine)
 {
-    cout << "Medientyp: Magazin" << endl;
+    out << "Medientyp: Magazin" << endl;
 
-    if (print_parents)
-    {
-        TPrintedMedium::print();
-    }
+        if (tmagazine.print_parents)
+        {
+            out << (TMedium&) tmagazine;
+        }
+        return out;
+}
+
+void TMagazine::print()
+{
+    cout << *this;
 }
