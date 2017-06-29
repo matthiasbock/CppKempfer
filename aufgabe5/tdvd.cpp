@@ -33,6 +33,9 @@ void TDVD::load(xmlNodePtr node)
 TDVD::~TDVD()
 {
     cout << "Destructing TDVD \"" << get_title() << "\"..." << endl;
+
+    if (PlayingTime != nullptr)
+        delete PlayingTime;
 }
 
 

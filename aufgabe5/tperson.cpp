@@ -42,6 +42,11 @@ TPerson::TPerson(xmlNodePtr node)
 TPerson::~TPerson()
 {
     cout << "Destructing TPerson \"" << Name << "\"..." << endl;
+
+    if (Address != nullptr)
+        delete Address;
+    if (Birthday != nullptr)
+        delete Birthday;
 }
 
 

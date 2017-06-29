@@ -83,11 +83,12 @@ TLibrary::~TLibrary()
     cout << "Destructing TLibrary \"" << Name << "\"..." << endl;
 
     for(unsigned i = 0; i < MediumList.size(); i++)
-    {
-        delete MediumList.at(i);
-    }
-    delete Address;
-    delete Manager;
+        if (MediumList.at(i) != nullptr)
+            delete MediumList.at(i);
+    if (Address)
+        delete Address;
+    if (Manager)
+        delete Manager;
 }
 
 
