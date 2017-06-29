@@ -19,10 +19,13 @@ TLocation::TLocation(string section, string rack)
 
 TLocation::TLocation(xmlNodePtr node)
 {
-    section = xmlGetString(node, "Section", "TLocation");
-    rack = xmlGetString(node, "Rack", "TLocation");
+    load(node);
 }
 
+void TLocation::load(xmlNodePtr node) {
+     section = xmlGetString(node, "Section", "TLocation");
+     rack = xmlGetString(node, "Rack", "TLocation");
+}
 
 void TLocation::print()
 {

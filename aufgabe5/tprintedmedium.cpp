@@ -5,9 +5,13 @@
 TPrintedMedium::TPrintedMedium(xmlNodePtr node)
 :TMedium(node)
 {
-    Pages = xmlGetInt(node, "Pages", "TPrintedMedium");
+    load(node);
 }
 
+void TPrintedMedium::load(xmlNodePtr node)
+{
+    Pages = xmlGetInt(node, "Pages", "TPrintedMedium");
+}
 
 void TPrintedMedium::print(bool print_parents)
 {

@@ -37,6 +37,11 @@ TTime::TTime(int hh, int mm, int ss)
 
 TTime::TTime(xmlNodePtr node)
 {
+    load(node);
+}
+
+void TTime::load(xmlNodePtr node)
+{
     hh = xmlGetInt(node, "Hour", "TTime");
     mm = xmlGetInt(node, "Minute", "TTime");
 
@@ -51,7 +56,6 @@ TTime::~TTime()
 {
     cout << "Destructing TTime..." << endl;
 }
-
 
 int TTime::get_hh() const
 {

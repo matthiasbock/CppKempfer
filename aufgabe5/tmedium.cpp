@@ -12,7 +12,12 @@ TMedium::TMedium(string Name, string Signature, TLocation* Location, int FSK, St
 
 TMedium::TMedium(xmlNodePtr node)
 {
-    Title = xmlGetString(node, "Title", "TMedium");
+    load(node);
+}
+
+void TMedium::load(xmlNodePtr node)
+{
+     Title = xmlGetString(node, "Title", "TMedium");
     Signature = xmlGetString(node, "Signatur", "TMedium");
     FSK = xmlGetInt(node, "FSK", "TMedium");
     set_status( xmlGetInt(node, "Status", "TMedium") );
@@ -26,8 +31,8 @@ TMedium::TMedium(xmlNodePtr node)
     }
     else
         cout << "Warning: Node <Location> for TMedium not found" << endl;
-}
 
+}
 
 TMedium::~TMedium()
 {

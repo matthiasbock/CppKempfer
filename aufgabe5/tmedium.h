@@ -24,7 +24,8 @@ class TMedium
         int FSK;
         Status status;
         void load(ifstream&);
-        
+        void load(xmlNodePtr);
+
     public:
         TMedium();
         TMedium(string, string, TLocation*, int, Status);
@@ -45,7 +46,6 @@ class TMedium
         void set_signature(string);
         void set_FSK(int);
         void set_location(TLocation*);
-
 };
 
 #endif

@@ -6,9 +6,13 @@ TMagazine::TMagazine(xmlNodePtr node)
 :TMedium(node),
  TPrintedMedium(node)
 {
-    Designer = xmlGetString(node, "Designer", "TMagazine");
+    load(node);
 }
 
+void TMagazine::load(xmlNodePtr node)
+{
+    Designer = xmlGetString(node, "Designer", "TMagazine");
+}
 
 TMagazine::~TMagazine()
 {

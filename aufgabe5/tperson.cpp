@@ -14,6 +14,11 @@ TPerson::TPerson(xmlNodePtr node)
  Address(),
  Birthday()
 {
+   load(node);
+}
+
+void TPerson::load(xmlNodePtr node)
+{
     xmlNodePtr childNode;
 
     this->Name = xmlGetString(node, "Name", "TPerson");
@@ -36,7 +41,6 @@ TPerson::TPerson(xmlNodePtr node)
     else
         cout << "Warning: Child node <Birthday> for TPerson not found" << endl;
 }
-
 
 
 TPerson::~TPerson()

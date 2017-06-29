@@ -36,6 +36,7 @@ class TPerson
         virtual ~TPerson();
 
         virtual void print();
+        void load(xmlNodePtr);
 
         /*
          * getter and setter

@@ -22,7 +22,7 @@ class TPrintedMedium: virtual public TMedium
      * @param XML node to import
      */
     TPrintedMedium(xmlNodePtr);
-
+    void load(xmlNodePtr);
     ~TPrintedMedium();
 
     void print(bool print_parents = true);

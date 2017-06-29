@@ -23,6 +23,7 @@ class TLocation
         TLocation(xmlNodePtr);
 
         void print();
+        void load(xmlNodePtr);
 
         string get_section() const;
         string get_rack() const;

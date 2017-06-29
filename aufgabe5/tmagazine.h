@@ -22,7 +22,7 @@ class TMagazine: public TPrintedMedium
      * @param XML node to import
      */
     TMagazine(xmlNodePtr);
-
+    void load(xmlNodePtr);
     ~TMagazine();
 
     void print(bool print_parents = true);
