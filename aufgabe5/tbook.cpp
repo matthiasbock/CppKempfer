@@ -21,7 +21,7 @@ void TBook::load(xmlNodePtr node)
 
 TBook::~TBook()
 {
-    cout << "Deconstructing TBook \"" << get_title() << "\"..." << endl;
+    cout << "Destructing TBook \"" << get_title() << "\"..." << endl;
 }
 
 

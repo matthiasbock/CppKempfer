@@ -22,7 +22,7 @@ void TEmployee::load(xmlNodePtr node)
 
 TEmployee::~TEmployee()
 {
-    cout << "Deconstructing TEmployee \"" << Name << "\"..." << endl;
+    cout << "Destructing TEmployee \"" << Name << "\"..." << endl;
 }
 
 

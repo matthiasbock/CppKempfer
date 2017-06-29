@@ -31,7 +31,7 @@ TMedium::TMedium(xmlNodePtr node)
 
 TMedium::~TMedium()
 {
-    cout << "Deconstructing TMedium \"" << Title << "\" with signature \"" << Signature << "\"..." << endl;
+    cout << "Destructing TMedium \"" << Title << "\" with signature \"" << Signature << "\"..." << endl;
 }
 
 

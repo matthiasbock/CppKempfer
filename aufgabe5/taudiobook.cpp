@@ -23,7 +23,7 @@ void TAudioBook::load(xmlNodePtr node)
 
 TAudioBook::~TAudioBook()
 {
-    cout << "Deconstructing TAudioBook \"" << get_title() << "\"..." << endl;
+    cout << "Destructing TAudioBook \"" << get_title() << "\"..." << endl;
 }
 
 

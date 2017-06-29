@@ -19,5 +19,5 @@ void TPrintedMedium::print()
 
 TPrintedMedium::~TPrintedMedium ()
 {
-    cout << "Deconstructing TPrintedMedium \"" << get_title() << "\"..." << endl;
+    cout << "Destructing TPrintedMedium \"" << get_title() << "\"..." << endl;
 }

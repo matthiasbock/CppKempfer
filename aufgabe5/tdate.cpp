@@ -28,7 +28,7 @@ TDate::TDate(xmlNodePtr node)
 
 TDate::~TDate()
 {
-    cout << "Deconstructing TDate \"" << dd << mm << yyyy <<"\"..." << endl;
+    cout << "Destructing TDate \"" << dd << mm << yyyy <<"\"..." << endl;
 }
 
 void TDate::load(xmlNodePtr node)

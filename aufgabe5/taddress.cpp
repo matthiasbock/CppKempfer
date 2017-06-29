@@ -35,7 +35,7 @@ void TAddress::load(xmlNodePtr node)
 
 TAddress::~TAddress()
 {
-    cout << "Deconstructing TAddress \"" << Street << " " << Number << "\"..." << endl;
+    cout << "Destructing TAddress \"" << Street << " " << Number << "\"..." << endl;
 }
 
 

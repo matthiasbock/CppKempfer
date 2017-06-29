@@ -61,7 +61,7 @@ void TLibraryPool::loadFromXML(xmlNodePtr node)
 
 TLibraryPool::~TLibraryPool()
 {
-    cout << "Deconstructing TLibraryPool \"" << this->Name << "\"..." << endl;
+    cout << "Destructing TLibraryPool \"" << this->Name << "\"..." << endl;
 
     // free sub-objects
     for(unsigned i = 0; i < LibraryList.size(); i++)

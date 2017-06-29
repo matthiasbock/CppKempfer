@@ -32,7 +32,7 @@ void TDVD::load(xmlNodePtr node)
 
 TDVD::~TDVD()
 {
-    cout << "Deconstructing TDVD \"" << get_title() << "\"..." << endl;
+    cout << "Destructing TDVD \"" << get_title() << "\"..." << endl;
 }
 
 

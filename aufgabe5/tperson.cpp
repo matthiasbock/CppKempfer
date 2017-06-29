@@ -41,7 +41,7 @@ TPerson::TPerson(xmlNodePtr node)
 
 TPerson::~TPerson()
 {
-    cout << "Deconstructing TPerson \"" << Name << "\"..." << endl;
+    cout << "Destructing TPerson \"" << Name << "\"..." << endl;
 }
 
 

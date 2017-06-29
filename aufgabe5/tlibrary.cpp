@@ -77,7 +77,7 @@ TLibrary::TLibrary(xmlNodePtr node)
 
 TLibrary::~TLibrary()
 {
-    cout << "Deconstructing TLibrary \"" << Name << "\"..." << endl;
+    cout << "Destructing TLibrary \"" << Name << "\"..." << endl;
 
     for(unsigned i = 0; i < MediumList.size(); i++)
     {

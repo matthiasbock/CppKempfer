@@ -21,7 +21,7 @@ void TCD::load(xmlNodePtr node)
 
 TCD::~TCD()
 {
-    cout << "Deconstructing TCD \"" << get_title() << "\"..." << endl;
+    cout << "Destructing TCD \"" << get_title() << "\"..." << endl;
 }
 
 

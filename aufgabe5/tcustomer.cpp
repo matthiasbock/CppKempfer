@@ -22,7 +22,7 @@ void TCustomer::load(xmlNodePtr node)
 
 TCustomer::~TCustomer()
 {
-    cout << "Deconstructing TCustomer \"" << this->Name << "\"... " << endl;
+    cout << "Destructing TCustomer \"" << this->Name << "\"... " << endl;
 }
 
 
