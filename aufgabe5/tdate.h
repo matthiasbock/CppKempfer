@@ -37,6 +37,8 @@ class TDate
          */
         TDate(xmlNodePtr);
 
+        ~TDate();
+
         void load(xmlNodePtr);
 
         void print();
