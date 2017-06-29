@@ -16,7 +16,7 @@ LDFLAGS += -L/lib/x86_64-linux-gnu
 
 INCLUDE += -I/usr/include
 INCLUDE += -I/usr/local/include
-INCLUDE += -I/usr/include/libxml2
+#INCLUDE += -I/usr/include/libxml2
 
 #
 # Compiler flags
@@ -26,7 +26,8 @@ INCLUDE += -I/usr/include/libxml2
 #
 CFLAGS += -g -Wall
 CPPFLAGS += -g -Wall -std=c++11
-LDFLAGS += -lstdc++ -lxml2
+LDFLAGS += -lstdc++ -ldl -lz -lm
+#-lxml2
 
 #
 # Source files
@@ -44,8 +45,8 @@ LIBXML2_SYSLIB = /usr/lib/x86_64-linux-gnu/libxml2.so
 LIBXML2_PATH = ../libxml2
 LIBXML2_AC_CONFIG = $(LIBXML2_PATH)/libxml2-config.cmake
 LIBXML2_LIB = $(LIBXML2_PATH)/.libs/libxml2.a
-LIBXML2_SRC = $(filter $(wildcard $(LIBXML2_PATH)/*.c), xmllint.c)
-LIBXML2_OBJS = $(LIBXML2_SRC:.c=.o)
+LIBXML2_SRC = $(filter-out $(LIBXML2_PATH)/xmllint.c, $(wildcard $(LIBXML2_PATH)/*.c))
+LIBXML2_OBJS = $(filter-out $(LIBXML2_PATH)/xmlcatalog.o $(LIBXML2_PATH)/xmllint.o, $(wildcard $(LIBXML2_PATH)/*.o))
 
 INCLUDE += -I$(LIBXML2_PATH)/include
 
