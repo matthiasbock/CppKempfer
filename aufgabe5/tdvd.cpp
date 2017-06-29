@@ -36,9 +36,12 @@ TDVD::~TDVD()
 }
 
 
-void TDVD::print()
+void TDVD::print(bool print_parents)
 {
     cout << "Medientyp: DVD" << endl;
 
-    TMedium::print();
+    if (print_parents)
+    {
+        TMedium::print();
+    }
 }

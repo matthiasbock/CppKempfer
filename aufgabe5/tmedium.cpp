@@ -35,7 +35,7 @@ TMedium::~TMedium()
 }
 
 
-void TMedium::print()
+void TMedium::print(bool)
 {
     //char tmp = cout.fill();
     cout.fill(' ');

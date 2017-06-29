@@ -29,7 +29,7 @@ class TDVD: public TMedium
 
     ~TDVD();
 
-    void print();
+    void print(bool print_parents = true);
 };
 
 #endif

@@ -16,9 +16,12 @@ TMagazine::~TMagazine()
 }
 
 
-void TMagazine::print()
+void TMagazine::print(bool print_parents)
 {
     cout << "Medientyp: Magazin" << endl;
 
-    TPrintedMedium::print();
+    if (print_parents)
+    {
+        TPrintedMedium::print();
+    }
 }

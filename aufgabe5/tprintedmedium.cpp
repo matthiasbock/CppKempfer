@@ -9,11 +9,14 @@ TPrintedMedium::TPrintedMedium(xmlNodePtr node)
 }
 
 
-void TPrintedMedium::print()
+void TPrintedMedium::print(bool print_parents)
 {
     cout << "Medientyp: Gedrucktes Medium" << endl;
 
-    TMedium::print();
+    if (print_parents)
+    {
+        TMedium::print();
+    }
 }
 
 

@@ -32,7 +32,7 @@ class TMedium
 
         virtual ~TMedium();
 
-        virtual void print();
+        virtual void print(bool print_parents = true);
         
         string get_status() const;
         string get_title() const;

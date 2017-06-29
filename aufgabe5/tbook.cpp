@@ -25,9 +25,12 @@ TBook::~TBook()
 }
 
 
-void TBook::print()
+void TBook::print(bool print_parents)
 {
     cout << "Medientyp: Buch" << endl;
 
-    TMedium::print();
+    if (print_parents)
+    {
+        TMedium::print();
+    }
 }

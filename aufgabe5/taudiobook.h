@@ -28,7 +28,7 @@ class TAudioBook: public TBook, public TCD
 
     ~TAudioBook();
 
-    void print();
+    void print(bool print_parents = true);
 };
 
 #endif

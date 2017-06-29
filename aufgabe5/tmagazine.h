@@ -25,7 +25,7 @@ class TMagazine: public TPrintedMedium
 
     ~TMagazine();
 
-    void print();
+    void print(bool print_parents = true);
 };
 
 #endif

@@ -25,7 +25,7 @@ class TPrintedMedium: virtual public TMedium
 
     ~TPrintedMedium();
 
-    void print();
+    void print(bool print_parents = true);
 };
 
 #endif

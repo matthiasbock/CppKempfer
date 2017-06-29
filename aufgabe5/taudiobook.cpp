@@ -27,10 +27,13 @@ TAudioBook::~TAudioBook()
 }
 
 
-void TAudioBook::print()
+void TAudioBook::print(bool print_parents)
 {
     cout << "Medientyp: Hoerbuch" << endl;
 
-    TCD::print(false);
-    TBook::print();
+    if (print_parents)
+    {
+        TCD::print(false);
+        TBook::print();
+    }
 }
