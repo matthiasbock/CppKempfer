@@ -17,6 +17,7 @@ class TLoan
 
   public:
     TLoan();
+    ~TLoan();
 
     TMedium* getMedium();
     void setMedium(TMedium*);
