@@ -42,7 +42,7 @@ class TLibrary
          * @param XML <Library> node
          */
         TLibrary(xmlNodePtr);
-
+        void load(xmlNodePtr);
         /**
          * @brief Deconstruct library
          */

@@ -4,9 +4,9 @@
 
 TAudioBook::TAudioBook(xmlNodePtr node)
 :TMedium(node),
- TPrintedMedium(node),
- TBook(node),
- TCD(node)
+TPrintedMedium(node),
+TBook(node),
+TCD(node)
 {
     load(node);
 }

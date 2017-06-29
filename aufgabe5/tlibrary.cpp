@@ -13,7 +13,11 @@ TLibrary::TLibrary(string name, TAddress* address, TPerson* Person )
 TLibrary::TLibrary(xmlNodePtr node)
 :MediumList()
 {
-    xmlNodePtr childNode;
+   load(node);
+}
+
+void TLibrary::load(xmlNodePtr node) {
+ xmlNodePtr childNode;
 
     Name = xmlGetString(node, "Name", "TLibrary");
 
@@ -73,7 +77,6 @@ TLibrary::TLibrary(xmlNodePtr node)
         MediumList.push_back(new TAudioBook(nodes.at(i)));
     }
 }
-
 
 TLibrary::~TLibrary()
 {
