@@ -133,6 +133,44 @@ void TLibraryPool::print()
 }
 
 
+TCustomer* TLibraryPool::getCustomerByNr(string CustomerNr)
+{
+    for (uint8_t i=0; i<CustomerList.size(); i++)
+    {
+        TCustomer *c = CustomerList[i];
+        if (c != nullptr && c->get_customerNr().compare(CustomerNr) == 0)
+        {
+            // comparison is a match!
+            return c;
+        }
+    }
+
+    // search was unsuccessful
+    return nullptr;
+}
+
+
+TMedium* TLibraryPool::getMediumBySignature(string Signature)
+{
+    for (uint8_t i=0; i<LibraryList.size(); i++)
+    {
+        TLibrary* library = LibraryList[i];
+        if (library != nullptr)
+        {
+            TMedium* medium = library->getMediumBySignature(Signature);
+            if (medium != nullptr)
+            {
+                // great success
+                return medium;
+            }
+        }
+    }
+
+    // search was unsuccessful
+    return nullptr;
+}
+
+
 /*
  * getter and setter
  */

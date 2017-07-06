@@ -32,3 +32,9 @@ void TCustomer::print()
 
     cout << "Kundennummer: " << this->CustomerNr << endl;
 }
+
+
+string TCustomer::get_customerNr()
+{
+    return CustomerNr;
+}

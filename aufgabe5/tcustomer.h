@@ -33,7 +33,7 @@ class TCustomer: virtual public TPerson
          */
         virtual void print();
 
-        string get_customerNr() const;
+        string get_customerNr();
         void set_customerNr(string);
 };
 

@@ -60,6 +60,14 @@ class TLibrary
         void add(TMedium*);
 
 
+        /**
+         * @brief Searches for a medium object by it's medium signature
+         * @param Signature of the medium to search for
+         * @return Pointer to medium of nullptr
+         */
+        TMedium* getMediumBySignature(string);
+
+
         /*
          * getter and setter
          */
