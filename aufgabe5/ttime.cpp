@@ -10,7 +10,7 @@ using namespace std;
 
 TTime::TTime()
 {
-    now = time(0);
+    time_t now = time(0);
     tm *ltm = localtime(&now);
     hh = ltm->tm_hour;
     mm = ltm->tm_min;
