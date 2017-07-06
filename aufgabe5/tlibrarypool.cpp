@@ -71,20 +71,26 @@ void TLibraryPool::loadFromXML(xmlNodePtr node)
         this->Chairman = new TEmployee(childNode);
     }
     else
-        cout << "Warning: Node <Chairman> for TLibraryPool not found" << endl;
+        cout << ANSI_YELLOW "Warning" ANSI_RESET ": Node <Chairman> for TLibraryPool not found" << endl;
 
     vector<xmlNodePtr> nodes;
 
     xmlGetChildrenByName(node, "Library", nodes);
     for (unsigned int i=0; i<nodes.size(); i++)
     {
-        this->LibraryList.push_back(new TLibrary(nodes.at(i)));
+        this->LibraryList.push_back(new TLibrary(nodes[i]));
     }
 
     xmlGetChildrenByName(node, "Customer", nodes);
     for (unsigned int i=0; i<nodes.size(); i++)
     {
-        this->CustomerList.push_back(new TCustomer(nodes.at(i)));
+        this->CustomerList.push_back(new TCustomer(nodes[i]));
+    }
+
+    xmlGetChildrenByName(node, "Loan", nodes);
+    for (unsigned int i=0; i<nodes.size(); i++)
+    {
+        this->LoanList.push_back(new TLoan(this, nodes[i]));
     }
 
     return;

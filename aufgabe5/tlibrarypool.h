@@ -17,6 +17,7 @@ using namespace std;
 #include "temployee.h"
 #include "tmedium.h"
 #include "tlibrary.h"
+#include "tloan.h"
 #include "string.h"
 
 
@@ -28,6 +29,7 @@ class TLibraryPool
         vector<TLibrary*> LibraryList;
         vector<TCustomer*> CustomerList;
         vector<TEmployee*> EmployeeList;
+        vector<TLoan*> LoanList;
         ifstream inFile;
         xmlDoc *xml = nullptr;
 
