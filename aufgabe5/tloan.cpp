@@ -1,6 +1,6 @@
 
 #include "tloan.h"
-
+#include "tlibrarypool.h"
 TLoan::TLoan()
 :Medium(nullptr),
  Customer(nullptr),
@@ -36,10 +36,9 @@ void TLoan::load(xmlNodePtr node) {
  xmlNodePtr childNode;
 
     string signatur = xmlGetString(node, "Signatur", "TLoan");
-
-    /* get CustomerNr function implementieren*/
     string customerNumber = xmlGetString(node, "CustomerNr", "TLoan");
-    /* get CustomerNr function implementieren*/
+    Customer = myLibraryPool->getCustomerByNr(customerNumber);
+    Medium = myLibraryPool->getMediumBySignature(signatur);
 
     childNode = xmlGetChildByName(node, "LoanDate");
 
