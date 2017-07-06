@@ -101,15 +101,23 @@ TLibraryPool::~TLibraryPool()
 {
     cout << "Destructing TLibraryPool \"" << this->Name << "\"..." << endl;
 
-    // free sub-objects
+
+    // delete loans before libraries, such that the mediums still exist
+    for(unsigned i = 0; i < LoanList.size(); i++)
+    {
+        delete LoanList[i];
+    }
+
     for(unsigned i = 0; i < LibraryList.size(); i++)
     {
         delete LibraryList[i];
     }
+
     for(unsigned i = 0; i < CustomerList.size(); i++)
     {
         delete CustomerList[i];
     }
+
     delete Chairman;
 
     // free XML document

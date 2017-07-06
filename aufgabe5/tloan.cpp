@@ -53,6 +53,12 @@ void TLoan::load(xmlNodePtr node) {
 }
 
 
+TLoan::~TLoan()
+{
+    cout << "Destructing TLoan for medium \"" << this->Medium->get_title() << "\"..." << endl;
+}
+
+
 TMedium* TLoan::getMedium()
 {
     return Medium;
