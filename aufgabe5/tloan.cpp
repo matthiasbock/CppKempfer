@@ -47,3 +47,39 @@ void TLoan::setExpiration(TDate* d)
 {
     Expiration = d;
 }
+
+
+TLoan::TLoan(xmlNodePtr node)
+{
+   load(node);
+}
+
+
+void TLoan::load(xmlNodePtr node) {
+ xmlNodePtr childNode;
+
+    string signatur = xmlGetString(node, "Signatur", "TLoan");
+
+    /* get CustomerNr function implementieren*/
+    string customerNumber = xmlGetString(node, "CustomerNr", "TLoan");
+    /* get CustomerNr function implementieren*/
+
+    childNode = xmlGetChildByName(node, "LoanDate");
+
+        if (childNode != nullptr)
+        {
+            cout << "Parsing loan date..." << endl;
+            LoanDate = new TLoan(childNode);
+        }
+        else
+            cout << "Warning: Node <LoanDate> for TLoan not found" << endl;
+
+    int loanDays = xmlGetInt(node, "LoanDays", "TLoan");
+
+    vector<xmlNodePtr> nodes;
+
+
+
+
+
+}

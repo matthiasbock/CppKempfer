@@ -5,7 +5,7 @@
 #include "tmedium.h"
 #include "tcustomer.h"
 #include "tdate.h"
-
+#include "xml.h"
 
 class TLoan
 {
@@ -30,6 +30,9 @@ class TLoan
 
     TDate* getExpiration();
     void setExpiration(TDate*);
+
+    TLoan(xmlNodePtr);
+    void load(xmlNodePtr);
 };
 
 #endif
