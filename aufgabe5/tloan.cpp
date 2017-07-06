@@ -37,8 +37,8 @@ void TLoan::load(xmlNodePtr node) {
 
     string signatur = xmlGetString(node, "Signatur", "TLoan");
     string customerNumber = xmlGetString(node, "CustomerNr", "TLoan");
-    TCustomer* customernr = myLibraryPool->getCustomerByNr(customerNumber);
-    TMedium* mediumSignature = myLibraryPool->getMediumBySignature(signatur);
+    Customer = myLibraryPool->getCustomerByNr(customerNumber);
+    Medium = myLibraryPool->getMediumBySignature(signatur);
 
     childNode = xmlGetChildByName(node, "LoanDate");
 
