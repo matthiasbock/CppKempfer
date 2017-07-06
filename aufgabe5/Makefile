@@ -33,10 +33,10 @@ LDFLAGS += -Wl,--start-group -Wl,-lstdc++ -Wl,-ldl -Wl,-lz -Wl,-lm
 # Source files
 #
 C_SRC = $(wildcard *.c)
-CPP_SRC = $(wildcard *.cpp)
+CPP_SRC = $(filter-out ueb05.cpp, $(wildcard *.cpp))
 OBJS = $(CPP_SRC:.cpp=.o)
 HEADERS = $(wildcard *.h)
-TARGET := ueb05
+TARGET := ueb06
 
 #
 # libxml2
