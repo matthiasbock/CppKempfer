@@ -77,17 +77,22 @@ uint8_t TDate::daysPerMonth(int month, int year)
 }
 
 
-TDate* TDate::operator+(int days)
+/**
+ * @brief Creates a new date object by \
+ *        adding or subtracting a given number of days
+ * @param days Number of days to add/subtract from date
+ */
+TDate* operator+(TDate date, int days)
 {
-    int day = this->day;
-    int month = this->month;
-    int year = this->year;
+    int day = date.day;
+    int month = date.month;
+    int year = date.year;
 
     while (days > 0)
     {
         days--;
         day++;
-        if (day > daysPerMonth(month, year))
+        if (day > TDate::daysPerMonth(month, year))
         {
             day = 1;
             month++;

@@ -58,12 +58,7 @@ class TDate
          */
         static uint8_t daysPerMonth(int, int);
 
-        /**
-         * @brief Creates a new date object by \
-         *        adding or subtracting a given number of days
-         * @param days Number of days to add/subtract from date
-         */
-        TDate* operator+(int);
+        friend TDate* operator+(TDate date, int days);
 
         //int get_dd() const;
         //int get_mm() const;
