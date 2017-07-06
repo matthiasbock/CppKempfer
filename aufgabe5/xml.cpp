@@ -117,10 +117,10 @@ int xmlGetInt(xmlNodePtr parent, const char *childName, string targetClass)
         }
         catch (exception e)
         {
-            cout << "Error: Conversion of string to int failed for child node <Year> for TDate." << endl;
+            cout << ANSI_RED "Error" ANSI_RESET ": Conversion of string to int failed for child node <Year> for TDate." << endl;
         }
     }
     else
-        cout << "Warning: Child node <" << childName << "> for " << targetClass << " not found" << endl;
+        cout << ANSI_YELLOW "Warning" ANSI_RESET ": Child node <" << childName << "> for " << targetClass << " not found" << endl;
     return -1;
 }
