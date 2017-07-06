@@ -6,7 +6,14 @@
 #include "tcustomer.h"
 #include "tdate.h"
 #include "xml.h"
+
+#ifdef TLIBRARYPOOL_H
+// forward declaration to break circular dependency
+class TLibraryPool;
+#else
 #include "tlibrarypool.h"
+#endif
+
 
 class TLoan
 {

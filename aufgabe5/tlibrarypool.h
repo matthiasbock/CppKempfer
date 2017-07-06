@@ -17,8 +17,14 @@ using namespace std;
 #include "temployee.h"
 #include "tmedium.h"
 #include "tlibrary.h"
-#include "tloan.h"
 #include "string.h"
+
+#ifdef TLOAN_H
+// forward declaration to break circular dependency
+class TLoan;
+#else
+#include "tloan.h"
+#endif
 
 
 class TLibraryPool
