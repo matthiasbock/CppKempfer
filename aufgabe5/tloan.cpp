@@ -8,6 +8,15 @@ TLoan::TLoan()
  Expiration(nullptr)
 {}
 
+
+TLoan::TLoan(TLibrarypool mylibrarypool)
+:Medium(nullptr),
+ Customer(nullptr),
+ LoanDate(nullptr),
+ Expiration(nullptr),
+ TLibrarypool(mylibrarypool)
+{}
+
 TMedium* TLoan::getMedium()
 {
     return Medium;
@@ -48,6 +57,15 @@ void TLoan::setExpiration(TDate* d)
     Expiration = d;
 }
 
+TLibrarypool* TLoan::getLibrarypool()
+{
+    return MyLibrarypool;
+}
+
+void TLoan::setLibrarypool(TLibrarypool* l)
+{
+    MyLibrarypool = l;
+}
 
 TLoan::TLoan(xmlNodePtr node)
 {
@@ -69,7 +87,6 @@ void TLoan::load(xmlNodePtr node) {
         if (childNode != nullptr)
         {
             cout << "Parsing loan date..." << endl;
-            LoanDate = new TLoan(childNode);
         }
         else
             cout << "Warning: Node <LoanDate> for TLoan not found" << endl;
