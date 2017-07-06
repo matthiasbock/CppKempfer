@@ -124,6 +124,23 @@ void TLibrary::print()
 }
 
 
+TMedium* TLibrary::getMediumBySignature(string Signature)
+{
+    for (uint16_t i=0; i<MediumList.size(); i++)
+    {
+        TMedium* medium = MediumList[i];
+        if (medium != 0 && medium->get_signature().compare(Signature) == 0)
+        {
+            // great success
+            return medium;
+        }
+    }
+
+    // search unsuccessful
+    return nullptr;
+}
+
+
 string TLibrary::get_name() const {return Name;}
 TAddress* TLibrary::get_address() const {return Address;}
 TPerson* TLibrary::get_manager() const {return Manager;}

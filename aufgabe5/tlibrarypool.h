@@ -17,6 +17,7 @@ using namespace std;
 #include "temployee.h"
 #include "tmedium.h"
 #include "tlibrary.h"
+#include "string.h"
 
 
 class TLibraryPool
@@ -82,6 +83,23 @@ class TLibraryPool
          * @brief Print a summary about this library pool
          */
         void print();
+
+
+        /**
+         * @brief Searches for a customer object by it's customer number
+         * @param CustomerNr Number of the customer to search for
+         * @return Pointer to customer or nullptr
+         */
+        TCustomer* getCustomerByNr(string);
+
+
+        /**
+         * @brief Searches for a medium object by it's medium signature
+         * @param Signature of the medium to search for
+         * @return Pointer to medium of nullptr
+         */
+        TMedium* getMediumBySignature(string);
+
 
         /*
          * getter and setter

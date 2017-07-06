@@ -47,3 +47,57 @@ void TDate::print()
     cout.fill('0');
     cout << setw(2) << right << day << '.' << setw(2) << right << month << '.' << year;
 }
+
+
+bool TDate::isLeapYear(int year)
+{
+    return (year % 4 == 0) && ((year % 100 != 0) || (year % 400 == 0));
+}
+
+
+uint8_t TDate::daysPerMonth(int month, int year)
+{
+    static const uint8_t dayCount[] =
+    {
+        31, // january
+        28, // february
+        31, // march
+        30, // april
+        31, // may
+        30, // june
+        31, // july
+        31, // august
+        30, // september
+        31, // october
+        30, // november
+        31, // december
+    };
+
+    return ((month == 2) && isLeapYear(year)) ? 29 : dayCount[month-1];
+}
+
+
+TDate* TDate::operator+(int days)
+{
+    int day = this->day;
+    int month = this->month;
+    int year = this->year;
+
+    while (days > 0)
+    {
+        days--;
+        day++;
+        if (day > daysPerMonth(month, year))
+        {
+            day = 1;
+            month++;
+            if (month > 12)
+            {
+                month = 1;
+                year++;
+            }
+        }
+    }
+
+    return new TDate(day, month, year);
+}
