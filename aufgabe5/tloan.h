@@ -19,7 +19,7 @@ class TLoan
 
   public:
     TLoan();
-    TLoan(TLibrarypool mylibrarypool);
+    TLoan(TLibraryPool);
     ~TLoan();
 
     TMedium* getMedium();
@@ -34,8 +34,8 @@ class TLoan
     TDate* getExpiration();
     void setExpiration(TDate*);
 
-    TLibrarypool* getLibrarypool();
-    void setLibrarypool(TLibrarypool*);
+    TLibraryPool* getLibrarypool();
+    void setLibrarypool(TLibraryPool*);
 
 
     TLoan(xmlNodePtr);

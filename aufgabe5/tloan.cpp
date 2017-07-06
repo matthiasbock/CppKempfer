@@ -9,12 +9,12 @@ TLoan::TLoan()
 {}
 
 
-TLoan::TLoan(TLibrarypool mylibrarypool)
+TLoan::TLoan(TLibraryPool mylibrarypool)
 :Medium(nullptr),
  Customer(nullptr),
  LoanDate(nullptr),
  Expiration(nullptr),
- TLibrarypool(mylibrarypool)
+ TLibraryPool(mylibrarypool)
 {}
 
 TMedium* TLoan::getMedium()
@@ -57,7 +57,7 @@ void TLoan::setExpiration(TDate* d)
     Expiration = d;
 }
 
-TLibrarypool* TLoan::getLibrarypool()
+TLibraryPool* TLoan::getLibrarypool()
 {
     return MyLibrarypool;
 }
