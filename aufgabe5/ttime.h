@@ -25,14 +25,15 @@ class TTime
 
         ~TTime();
 
+        friend ostream& operator<<(ostream&, TTime*);
+        void print();
+
         int get_hh() const;
         int get_mm() const;
         int get_ss() const;
         void set_hh(int hh);
         void set_mm(int mm);
         void set_ss(int ss);
-        void print();
-    
 };
 
 #endif

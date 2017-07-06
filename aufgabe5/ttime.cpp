@@ -53,6 +53,18 @@ TTime::~TTime()
 }
 
 
+ostream& operator<<(ostream& out, TTime* t)
+{
+    cout << setfill('0');
+    cout << setw(2) << t->hh << ':' << setw(2) << t->mm;
+    if (t->has_second)
+    {
+        cout << ':' << setw(2) << t->ss;
+    }
+    return out;
+}
+
+
 int TTime::get_hh() const
 {
     return hh;
@@ -86,10 +98,5 @@ void TTime::set_ss(int ss)
 
 void TTime::print()
 {
-    cout << setfill('0');
-    cout << setw(2) << hh << ':' << setw(2) << mm;
-    if (has_second)
-    {
-        cout << ':' << setw(2) << ss;
-    }
+    cout << this;
 }
