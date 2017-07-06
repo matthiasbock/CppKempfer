@@ -2,7 +2,6 @@
 
 #include "tlibrarypool.h"
 
-
 TLibraryPool::TLibraryPool(string n, TCustomer* p)
 :Name(n), Chairman(p) {}
 
@@ -36,6 +35,20 @@ ostream& operator<<(ostream& out, TLibraryPool& librarypool)
     {
         out << endl;
         librarypool.CustomerList.at(j)->print();
+        for(unsigned k = 0; k < librarypool.LoanList.size(); k++)
+        {
+                out << endl;
+                if(librarypool.LoanList.at(k)->getCustomer() == librarypool.CustomerList.at(j))
+                {
+                    out << "Ausleihen: ";
+                    out << endl;
+                    out << "Ausleihe vom "  << librarypool.LoanList.at(k)->getLoanDate();
+                    out << endl;
+                    out << "Rückgabe bis spätestens " << librarypool.LoanList.at(k)->getExpiration();
+                    // Medium ausgeben
+                    out << endl;
+                 }
+        }
     }
     out << endl;
 
