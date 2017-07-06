@@ -15,12 +15,16 @@ class TLoan
     TPerson *Customer;
     TDate   *LoanDate;
     TDate   *Expiration;
-    TLibraryPool *MyLibrarypool;
+    TLibraryPool *myLibraryPool;
 
   public:
     TLoan();
-    TLoan(TLibraryPool);
+    TLoan(TLibraryPool*);
+    TLoan(xmlNodePtr);
+    TLoan(TLibraryPool*, xmlNodePtr);
     ~TLoan();
+
+    void load(xmlNodePtr);
 
     TMedium* getMedium();
     void setMedium(TMedium*);
@@ -34,12 +38,8 @@ class TLoan
     TDate* getExpiration();
     void setExpiration(TDate*);
 
-    TLibraryPool* getLibrarypool();
-    void setLibrarypool(TLibraryPool*);
-
-
-    TLoan(xmlNodePtr);
-    void load(xmlNodePtr);
+    TLibraryPool* getLibraryPool();
+    void setLibraryPool(TLibraryPool*);
 };
 
 #endif

@@ -7,7 +7,7 @@
 #include <fstream>
 
 #include "tperson.h"
-#include "tloan.h"
+//#include "tloan.h"
 
 using namespace std;
 
