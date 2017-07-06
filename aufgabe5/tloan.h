@@ -5,7 +5,8 @@
 #include "tmedium.h"
 #include "tcustomer.h"
 #include "tdate.h"
-
+#include "xml.h"
+#include "tlibrarypool.h"
 
 class TLoan
 {
@@ -14,10 +15,16 @@ class TLoan
     TPerson *Customer;
     TDate   *LoanDate;
     TDate   *Expiration;
+    TLibraryPool *myLibraryPool;
 
   public:
     TLoan();
+    TLoan(TLibraryPool*);
+    TLoan(xmlNodePtr);
+    TLoan(TLibraryPool*, xmlNodePtr);
     ~TLoan();
+
+    void load(xmlNodePtr);
 
     TMedium* getMedium();
     void setMedium(TMedium*);
@@ -30,6 +37,9 @@ class TLoan
 
     TDate* getExpiration();
     void setExpiration(TDate*);
+
+    TLibraryPool* getLibraryPool();
+    void setLibraryPool(TLibraryPool*);
 };
 
 #endif
